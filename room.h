@@ -9,7 +9,12 @@ class Room : public Entity
 public:
 	Room(Point l) : loc(l) {}
 	Point getLoc() { return loc; }
-	void setExits(Room e, Room w, Room n, Room s);
+	void setExits(Room *e, Room *w, Room *n, Room *s);
+	void setE(Room *e) { E = e; }
+	void setW(Room *w) { W = w; }
+	void setN(Room *n) { N = n; }
+	void setS(Room *s) { S = s; }
+	void findAndSetExits(vector<Room> &v, int mapsize);
 private:
 	Point loc;
 	Room *E;
