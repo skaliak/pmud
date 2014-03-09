@@ -27,7 +27,10 @@ Map::Map(int size)
 	for (vector<Room>::iterator roomIT = rbeg; roomIT != rend; ++roomIT)
 	{
 		//get list of neighbor points, find matching rooms with stl find, and assign pointer to nsew
-
+		for (int i = 0; i < 4; ++i)
+		 {
+		 	//4 directions
+		 } 
 
 	}
 	

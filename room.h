@@ -3,6 +3,7 @@
 
 #include <string>
 #include "entity.h"
+#include "Point.h"
 
 class Room : public Entity
 {
@@ -15,6 +16,7 @@ public:
 	void setN(Room *n) { N = n; }
 	void setS(Room *s) { S = s; }
 	void findAndSetExits(vector<Room> &v, int mapsize);  //is this necessary?
+	void setExit(Room *r, Direction dir);
 
 	bool operator==(Room const& rhs) { return (loc == rhs.loc); }
 private:

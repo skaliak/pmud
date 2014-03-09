@@ -24,7 +24,7 @@ public:
 
 	//this uses ncurses
 	//void cPrint();
-
+	enum Direction { NORTH, EAST, SOUTH, WEST };
 	//operators
 	Point const operator+(Point const& rhs);
 	Point const operator-(Point const& rhs);
