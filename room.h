@@ -14,7 +14,9 @@ public:
 	void setW(Room *w) { W = w; }
 	void setN(Room *n) { N = n; }
 	void setS(Room *s) { S = s; }
-	void findAndSetExits(vector<Room> &v, int mapsize);
+	void findAndSetExits(vector<Room> &v, int mapsize);  //is this necessary?
+
+	bool operator==(Room const& rhs) { return (loc == rhs.loc); }
 private:
 	Point loc;
 	Room *E;

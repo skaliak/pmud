@@ -1,13 +1,12 @@
 
 #include <iostream>
 #include "Point.h"
-#include <curses.h>
+//#include <curses.h>
 
-
+/*
 Point const Point::operator+(Point const& rhs)
 {
 	//need to rethink wrap around
-
 	Point p;
 	p.bound = (this->bound < rhs.bound) ? this->bound :
 		rhs.bound;
@@ -21,6 +20,26 @@ Point const Point::operator+(Point const& rhs)
 	p.y -= ( p.y >= p.bound ) ? p.bound : 0;
 	return p;
 }
+*/
+
+//+ and - have been simplified
+Point const Point::operator+(Point const& rhs)
+{
+	Point p;
+	//p.bound = (this->bound < rhs.bound) ? this->bound : rhs.bound;
+	p.x = this->x + rhs.x;
+	p.y = this->y + rhs.y;
+	return p;
+}
+
+Point const Point::operator-(Point const& rhs)
+{
+	Point p;
+	//p.bound = (this->bound < rhs.bound) ? this->bound : rhs.bound;
+	p.x = this->x - rhs.x;
+	p.y = this->y - rhs.y;
+	return p;
+}
 
 std::ostream &operator<<(std::ostream &out, Point p)
 {
@@ -28,6 +47,7 @@ std::ostream &operator<<(std::ostream &out, Point p)
 	return out;
 }
 
+/*
 bool Point::operator==(Point const& rhs)
 {
 	if ( (this->x == rhs.x) && (this->y == rhs.y) )
@@ -45,3 +65,4 @@ void Point::cPrint()
 	else
 		std::cout << " " << *this;
 }
+*/
