@@ -24,12 +24,22 @@ Map::Map(int size)
 	vector<Room>::iterator rend = rooms.end();
 	vector<Room>::iterator found;
 
-	for (vector<Room>::iterator roomIT = rbeg; roomIT != rend; ++roomIT)
+	for (vector<Room>::iterator currentRoom = rbeg; currentRoom != rend; ++currentRoom)
 	{
 		//get list of neighbor points, find matching rooms with stl find, and assign pointer to nsew
-		for (int i = 0; i < 4; ++i)
+		for (int direction = 0; direction < 4; ++direction)
 		 {
 		 	//4 directions
+		 	Point neighbor = currentRoom->loc.Neighbor(direction);
+		 	found = find(rbeg, rend, Room(neighbor));
+		 	if (found != rend)
+		 	{
+		 		currentRoom->setExit(&(*found), direction );
+		 	}
+		 	else
+		 	{
+		 		currentRoom->setExit(wall(), direction);
+		 	}
 		 } 
 
 	}

@@ -22,6 +22,22 @@ Point const Point::operator+(Point const& rhs)
 }
 */
 
+Point Point::Neighbor(Direction dir)
+{
+	switch(dir)
+	{
+		case NORTH:
+			return nNeighbor();
+		case EAST:
+			return eNeighbor();
+		case SOUTH:
+			return sNeighbor();
+		case WEST:
+			return wNeighbor();
+	}
+}
+
+
 //+ and - have been simplified
 Point const Point::operator+(Point const& rhs)
 {

@@ -21,6 +21,7 @@ public:
 	Point sNeighbor() { return Point(x, y + 1); }
 	Point eNeighbor() { return Point(x + 1, y); }
 	Point wNeighbor() { return Point(x - 1, y); }
+	Point Neighbor(Direction dir);
 
 	//this uses ncurses
 	//void cPrint();
