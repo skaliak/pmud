@@ -7,8 +7,11 @@
 class Room : public Entity
 {
 public:
-	Room();
+	Room(Point l) : loc(l) {}
+	Point getLoc() { return loc; }
+	void setExits(Room e, Room w, Room n, Room s);
 private:
+	Point loc;
 	Room *E;
 	Room *W;
 	Room *N;
