@@ -15,6 +15,8 @@ public:
 	Point() : bound(MAX_BOUND) {}
 	Point(int a, int b) : bound(MAX_BOUND), x(a), y(b) {} 
 	Point(int a, int b, int boundary) : bound(boundary), x(a), y(b) {}
+
+	enum Direction { NORTH, EAST, SOUTH, WEST };
 	
 	bool isOutOfBounds(int boundary) { return ( (x < 0) | (y < 0) | (x >= boundary) | (y >= boundary) ); }
 	Point nNeighbor() { return Point(x, y - 1); }
@@ -23,8 +25,6 @@ public:
 	Point wNeighbor() { return Point(x - 1, y); }
 	Point Neighbor(Direction dir);
 
-	
-	enum Direction { NORTH, EAST, SOUTH, WEST };
 	//operators
 	Point const operator+(Point const& rhs);
 	Point const operator-(Point const& rhs);

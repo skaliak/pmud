@@ -1,7 +1,7 @@
 
 #include "player.h"
 
-Plater::Player()
+Player::Player()
 {
 	//?
 }
@@ -19,7 +19,7 @@ void lookAround()
 }
 
 //moves the player in this direction
-void move(Direction dir)
+void move(Point::Direction dir)
 {
 	//need to check if it's possible to move in that direction, then
 	//lastRoom = currentRoom and

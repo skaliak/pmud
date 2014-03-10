@@ -1,5 +1,6 @@
 #include "map.h"
 #include <vector>
+#include <algorithm>
 
 using std::vector;
 
@@ -30,15 +31,15 @@ Map::Map(int size)
 		for (int direction = 0; direction < 4; ++direction)
 		 {
 		 	//4 directions
-		 	Point neighbor = currentRoom->getLoc().Neighbor(direction);
-		 	found = find(rbeg, rend, Room(neighbor));
+			Point neighbor = currentRoom->getLoc().Neighbor((Point::Direction)direction);
+		 	found = std::find(rbeg, rend, Room(neighbor));
 		 	if (found != rend)
 		 	{
-		 		currentRoom->setExit(&(*found), direction );
+		 		currentRoom->setExit(&(*found), (Point::Direction)direction );
 		 	}
 		 	else
 		 	{
-		 		currentRoom->setExit(wall(), direction);
+				currentRoom->setExit(wall(), (Point::Direction)direction);
 		 	}
 		 } 
 
