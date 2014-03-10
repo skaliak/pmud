@@ -7,7 +7,7 @@
 
 class Point
 {
-private:
+protected:
 	int bound, x, y;
 	//static const char PIXEL = '#';
 public:
@@ -23,8 +23,7 @@ public:
 	Point wNeighbor() { return Point(x - 1, y); }
 	Point Neighbor(Direction dir);
 
-	//this uses ncurses
-	//void cPrint();
+	
 	enum Direction { NORTH, EAST, SOUTH, WEST };
 	//operators
 	Point const operator+(Point const& rhs);

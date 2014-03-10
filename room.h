@@ -2,6 +2,7 @@
 #define ROOM_H
 
 #include <string>
+#include <vector>
 #include "entity.h"
 #include "Point.h"
 
@@ -15,11 +16,11 @@ public:
 	void setW(Room *w) { W = w; }
 	void setN(Room *n) { N = n; }
 	void setS(Room *s) { S = s; }
-	void findAndSetExits(vector<Room> &v, int mapsize);  //is this necessary?
-	void setExit(Room *r, Direction dir);
+	void findAndSetExits(std::vector<Room> &v, int mapsize);  //is this necessary?
+	void setExit(Room *r, Point::Direction dir);
 
 	bool operator==(Room const& rhs) { return (loc == rhs.loc); }
-private:
+protected:
 	Point loc;
 	Room *E;
 	Room *W;

@@ -3,10 +3,10 @@
 
 #include "room.h"
 
-class Wall
+class Wall : public Room
 {
 public:
-	Wall() { E = 0; W = 0; N = 0; S = 0; }
+	Wall() : Room(Point(-1,-1)) { E = 0; W = 0; N = 0; S = 0; }
 
 	
 };

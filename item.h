@@ -9,7 +9,7 @@ class Item : public Entity
 {
 public:
 	Item();
-private:
+protected:
 	Room *location;
 	
 };

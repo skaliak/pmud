@@ -30,7 +30,7 @@ Map::Map(int size)
 		for (int direction = 0; direction < 4; ++direction)
 		 {
 		 	//4 directions
-		 	Point neighbor = currentRoom->loc.Neighbor(direction);
+		 	Point neighbor = currentRoom->getLoc().Neighbor(direction);
 		 	found = find(rbeg, rend, Room(neighbor));
 		 	if (found != rend)
 		 	{

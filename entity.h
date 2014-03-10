@@ -6,12 +6,13 @@
 class Entity
 {
 public:
-	Entity();
-	getDescription();
+	Entity() : description("") {}
+	Entity(std::string desc) : description(desc) {}
+	void getDescription();
 
 	//should only be allowed if description is ""
-	setDescription(string desc) { if (description == "") description = desc; }
-private:
+	void setDescription(std::string desc) { if (description == "") description = desc; }
+protected:
 	std::string description;
 	
 };
