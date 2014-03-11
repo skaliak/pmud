@@ -11,6 +11,7 @@ public:
 	Region(Point tl, Point br) : topleft(tl), bottomright(br) {}
 	Region(Point tl, int width, int height);
 	bool isInside(const Point p);
+	virtual std::string obstacle() { return " an obstacle "; }
 protected:
 	Point topleft;
 	Point bottomright;

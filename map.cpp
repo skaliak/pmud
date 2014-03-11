@@ -39,7 +39,8 @@ Map::Map(int size)
 		 	}
 		 	else
 		 	{
-				currentRoom->setExit(wall(), (Point::Direction)direction);
+				//currentRoom->setExit(wall(), (Point::Direction)direction);
+				currentRoom->setExit(NULL, (Point::Direction)direction);
 		 	}
 		 } 
 

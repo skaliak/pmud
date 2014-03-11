@@ -5,6 +5,7 @@
 #include <vector>
 #include "entity.h"
 #include "Point.h"
+#include "region.h"
 
 class Room : public Entity
 {
@@ -16,9 +17,10 @@ public:
 	void setW(Room *w) { W = w; }
 	void setN(Room *n) { N = n; }
 	void setS(Room *s) { S = s; }
-	void findAndSetExits(std::vector<Room> &v, int mapsize);  //is this necessary?
+	//void findAndSetExits(std::vector<Room> &v, int mapsize);  //is this necessary?
 	void setExit(Room *r, Point::Direction dir);
-	*Room exit(Point::Diredtion dir);
+	Room *exit(Point::Direction dir);
+	std::string listExits();
 
 	bool operator==(Room const& rhs) { return (loc == rhs.loc); }
 protected:
@@ -27,6 +29,8 @@ protected:
 	Room *W;
 	Room *N;
 	Room *S;	
+	bool exitsAreSet;
+	Region *region;
 };
 
 
