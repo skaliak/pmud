@@ -18,6 +18,7 @@ public:
 	void setS(Room *s) { S = s; }
 	void findAndSetExits(std::vector<Room> &v, int mapsize);  //is this necessary?
 	void setExit(Room *r, Point::Direction dir);
+	*Room exit(Point::Diredtion dir);
 
 	bool operator==(Room const& rhs) { return (loc == rhs.loc); }
 protected:

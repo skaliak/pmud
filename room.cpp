@@ -8,7 +8,7 @@ void Room::findAndSetExits(vector<Room> &v, int mapsize)
 
 }
 
-void Room::setExit(Room *r, Direction dir)
+void Room::setExit(Room *r, Point::Direction dir)
 {
 	switch(dir)
 	{
@@ -24,6 +24,22 @@ void Room::setExit(Room *r, Direction dir)
 		case WEST:
 			W = r;
 			break;
+	}
+
+}
+
+void Room::exit(Point::Direction dir)
+{
+	switch(dir)
+	{
+		case NORTH:
+			return N;
+		case EAST:
+			return E;
+		case SOUTH:
+			return S;
+		case WEST:
+			return W;
 	}
 
 }
