@@ -51,7 +51,7 @@ Map::Map(int size)
 
 	}
 	
-	//need to add more, e.g. for creating regions and obstacles
+	//need to add more, e.g. for creating regions and obstacles (deleted rooms become obstacles)
 
 
 }
