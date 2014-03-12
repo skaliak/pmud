@@ -24,8 +24,8 @@ public:
 	Point eNeighbor() { return Point(x + 1, y); }
 	Point wNeighbor() { return Point(x - 1, y); }
 	Point Neighbor(Direction dir);
-	int getX() { return x; }
-	int getY() { return y; }
+	int getX() const { return x; }
+	int getY() const { return y; }
 
 	//operators
 	Point const operator+(Point const& rhs);

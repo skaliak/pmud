@@ -1,14 +1,15 @@
 #include "region.h"
 #include <cstdlib>
 
-using std::rand();
+using std::rand;
 
-Region::Region(Point tl, int width, int height, string s)
+
+Region::Region(Point tl, int width, int height)
 {
 	envPhraseChance = 4;
-	entranceDesc = s;
 	topleft = tl;
 	bottomright = tl + Point(width, height);
+	dataNotLoaded = false;
 }
 
 bool Region::isInside(const Point p)
@@ -23,18 +24,19 @@ bool Region::isInside(const Point p)
 	return ( (xlow <= x) && (x <= xhigh) && (ylow <= y) && (y <= yhigh) );
 }
 
-string obstacle()
+string Region::obstacle()
 {
 	int randint = rand() % obstacles.size();
 	return obstacles[randint];
 }
 
-string randEnv()
+string Region::randEnv()
 {
 	if ((rand() % envPhraseChance) == 1)
 	{
 		int randint = rand() % envPhrase.size();
-		return[randint];
+		return envPhrase[randint];
 	}
 	return "";
 }
+

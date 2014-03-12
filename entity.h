@@ -11,7 +11,7 @@ public:
 	std::string getDescription() { return description; }
 
 	//should only be allowed if description is ""
-	void setDescription(std::string desc) { if (description == "") description = desc; }
+	virtual void setDescription(std::string desc) { if (description == "") description = desc; }
 protected:
 	std::string description;
 	
