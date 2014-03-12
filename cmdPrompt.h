@@ -6,10 +6,10 @@
 using std::string;
 using std::vector;
 
-class MyClass
+class CmdPrompt
 {
 public:
-	MyClass(){}
+	CmdPrompt();
 	void showHelp();
 	void showPrompt();
 	void processCommand();  //how is the command actually executed?  should this be in a different class?

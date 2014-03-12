@@ -36,3 +36,10 @@ a large pond.
 a thick curtain of vines.
 $
 $$Plains
+It's plain.
+$
+you smell something.
+$
+a hole.
+a wall.
+$
