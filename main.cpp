@@ -1,11 +1,11 @@
 
-#include "room.h"
-#include "map.h"
-#include "room.h"
+#include "gameController.h"
+
 
 int main()
 {
-
+	GameController gc;
+	gc.Play();
 
 	return 0;
 }
