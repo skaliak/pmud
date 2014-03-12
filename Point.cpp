@@ -1,26 +1,11 @@
 
 #include <iostream>
+#include <cstdlib>
 #include "Point.h"
 //#include <curses.h>
 
-/*
-Point const Point::operator+(Point const& rhs)
-{
-	//need to rethink wrap around
-	Point p;
-	p.bound = (this->bound < rhs.bound) ? this->bound :
-		rhs.bound;
-	p.x = this->x + rhs.x;
-	p.y = this->y + rhs.y;
+using std::rand;
 
-	//if x or y are negative, add them to the bound
-	p.x += ( p.x < 0) ? p.bound : 0;
-	p.x -= ( p.x >= p.bound ) ? p.bound : 0;
-	p.y += ( p.y < 0) ? p.bound : 0;
-	p.y -= ( p.y >= p.bound ) ? p.bound : 0;
-	return p;
-}
-*/
 
 Point Point::Neighbor(Direction dir)
 {
@@ -37,6 +22,39 @@ Point Point::Neighbor(Direction dir)
 	}
 }
 
+Point Point::randP(int max)
+{
+	int x = rand() % max;
+	int y = rand() % max;
+
+	return Point(x, y);
+}
+
+Point Point::randQuadP(int max, int quad)
+{
+	int xOffset = 0, yOffset = 0;
+	max = max / 2;
+
+	switch (quad)
+	{
+	case 2:
+		xOffset = max;
+		break;
+	case 3:
+		yOffset = max;
+		break;
+	case 4:
+		yOffset = max;
+		xOffset = max;
+		break;
+	}
+
+	Point p = randP(max);
+	p.x += xOffset;
+	p.y += yOffset;
+
+	return p;
+}
 
 //+ and - have been simplified
 Point const Point::operator+(Point const& rhs)
@@ -63,22 +81,4 @@ std::ostream &operator<<(std::ostream &out, Point p)
 	return out;
 }
 
-/*
-bool Point::operator==(Point const& rhs)
-{
-	if ( (this->x == rhs.x) && (this->y == rhs.y) )
-	{
-		return true;
-	}
 
-	return false;
-}
-
-void Point::cPrint()
-{
-	if(ANIMATE)
-		mvaddch(this->y, this->x, PIXEL);
-	else
-		std::cout << " " << *this;
-}
-*/

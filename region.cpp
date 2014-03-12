@@ -6,9 +6,26 @@ using std::rand;
 
 Region::Region(Point tl, int width, int height)
 {
-	envPhraseChance = 4;
+	envPhraseChance = 4;  //need to make this a macro or const!!
 	topleft = tl;
 	bottomright = tl + Point(width, height);
+	dataNotLoaded = false;
+}
+
+Region::Region(int size)
+{
+	int startQuad, endQuad;
+	startQuad = rand() % 3 + 1;
+
+	if (startQuad == 1)
+		endQuad = rand() % 4 + 2;
+	else
+		endQuad = 4;
+
+	topleft = Point::randQuadP(size, startQuad);  //top left point
+	bottomright = Point::randQuadP(size, endQuad);    //bottom right point
+
+	envPhraseChance = 4; //need to make this a macro or const!!
 	dataNotLoaded = false;
 }
 

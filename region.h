@@ -13,22 +13,26 @@ using std::vector;
 class Region : public Entity
 {
 public:
-	Region();
+	Region();  //remove this one?
 	Region(Point tl, Point br) : topleft(tl), bottomright(br), envPhraseChance(4), dataNotLoaded(true) {}
 	Region(Point tl, int width, int height); 
-	//add a constructor that just takes size, and generates a random region within that 
+	//constructor that just takes size (i.e. map size), and generates a random region within that area
+	Region(int size);
 
+	//is the point inside the region?  We need this to associate region pointers with rooms
 	bool isInside(const Point p);
 
+	//getters
 	virtual string obstacle();  //random obstacle phrase
 	//virtual string greeting() { return entranceDesc; }   //use parent member
 	virtual string randEnv();  //{ return " you hear/see/smell a sound/thing/odor "; }
-	//void loadData();
+	bool readyToLoad() { return dataNotLoaded; }
+
+	//setters
 	void addObstacle(string s) { if (dataNotLoaded) obstacles.push_back(s); }
 	void addEnvPhrase(string s) { if (dataNotLoaded) envPhrase.push_back(s); }
 	void setDescription(string s) { if (dataNotLoaded) description = s; }
 	void lockData() { if (dataNotLoaded) dataNotLoaded = false; }
-	bool readyToLoad() { return dataNotLoaded; }
 protected:
 	bool dataNotLoaded;
 	int envPhraseChance;  //lower is a better chance

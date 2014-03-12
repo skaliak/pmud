@@ -16,9 +16,15 @@ public:
 	Point(int a, int b) : bound(MAX_BOUND), x(a), y(b) {} 
 	Point(int a, int b, int boundary) : bound(boundary), x(a), y(b) {}
 
+	static Point randP(int max);  //generate point no bigger than max
+	static Point randQuadP(int max, int quad);
+
 	enum Direction { NORTH, EAST, SOUTH, WEST };
 	
+	//tests
 	bool isOutOfBounds(int boundary) { return ( (x < 0) | (y < 0) | (x >= boundary) | (y >= boundary) ); }
+
+	//getters
 	Point nNeighbor() { return Point(x, y - 1); }
 	Point sNeighbor() { return Point(x, y + 1); }
 	Point eNeighbor() { return Point(x + 1, y); }
