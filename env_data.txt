@@ -1,0 +1,38 @@
+$$Desert
+You've reached an area that apparently has not seen any form of precipitation
+for years.  This is the desert.  Vegetation is sparse, and what little there is
+seems to be barely clinging to life.  It is hot, and you can already feel a painful
+dryness in your nose and throat.
+$
+You see a shimmering on the ground in the distance -- could it be water?
+The ground here is very soft sand.  You nearly lose your footing.
+There is evidence that water once flowed here.  It is hard to tell if it was recently or long ago.
+You see movement out of the corner of your eye.  Whatever is was is gone by the time you turn to look.
+You hear a distant baying, like that of a coyote or fox.
+$
+a giant skeleton of some long-dead creature.
+suspicious ground that looks like it could be quicksand.
+a cluster of large thorny cactus.
+a very deep crevasse.
+some jagged boulders.
+$
+$$Forest
+You're entering a forest.  Ancient trees hundreds of feet high surround you.
+Not much light penetrates down to the forest floor, so there is relatively
+little undergrowth.  A faint earthy organic smell fills the air.
+It is peaceful and quite beautiful here, but you have
+and odd feeling like you're being watched.
+$
+You hadn't realized until now how much background noise there was.  It's just suddenly stopped, and the silence is deafaning.
+Some kind of furry woodland creature scurries by not too far away, too fast for you to make out exactly what it was.
+The sound of rushing water can be heard, but you can't tell exactly which direction it's coming from.
+You've entered a very small clearing.  Oddly enough it seems to be a nearly perfect circle.
+A huge old dead tree falls with little warning.  You jump out of it's path just in time to avoid being crushed!
+$
+a large fallen tree.
+a cliff.
+a very dense thicket.
+a large pond.
+a thick curtain of vines.
+$
+$$Plains
