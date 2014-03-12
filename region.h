@@ -16,7 +16,10 @@ public:
 	Region();
 	Region(Point tl, Point br) : topleft(tl), bottomright(br), envPhraseChance(4), dataNotLoaded(true) {}
 	Region(Point tl, int width, int height); 
+	//add a constructor that just takes size, and generates a random region within that 
+
 	bool isInside(const Point p);
+
 	virtual string obstacle();  //random obstacle phrase
 	//virtual string greeting() { return entranceDesc; }   //use parent member
 	virtual string randEnv();  //{ return " you hear/see/smell a sound/thing/odor "; }
