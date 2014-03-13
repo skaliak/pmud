@@ -14,11 +14,11 @@
 class GameController
 {
 public:
-	GameController(){}
+	GameController();  //there should be some setup here...
 	void Play();  //starts/plays the game
-
+	bool processCommand(char cmd); //returns true if quit was selected
 private:
-	CmdPrompt cmd;
+	CmdPrompt cmdPrompt;
 	Map map;  //will there be constructor issues here?  Nope!  there's defaults
 	Player player;  //does player have a default constr? 
 };
