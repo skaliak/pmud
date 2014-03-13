@@ -18,6 +18,7 @@ public:
 
 	static Point randP(int max);  //generate point no bigger than max
 	static Point randQuadP(int max, int quad);
+	static int area(Point p1, Point p2);
 
 	enum Direction { NORTH, EAST, SOUTH, WEST };
 	

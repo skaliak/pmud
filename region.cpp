@@ -12,22 +12,43 @@ Region::Region(Point tl, int width, int height)
 	dataNotLoaded = false;
 }
 
-Region::Region(int size)  //make a new region within the given map size
+Region::Region(int size, bool defaultRegion)  //make a new region within the given map size
 {
+	int sourceArea = (size - 1) * (size - 1);
+	int minArea = sourceArea / 4;
 	int startQuad, endQuad;
-	startQuad = rand() % 3 + 1;
 
-	if (startQuad == 1)
-		endQuad = rand() % 4 + 2;
+	if (defaultRegion)
+	{
+		//default region covers the whole map
+		topleft = Point(0, 0);
+		bottomright = Point(size - 1, size - 1);
+		description = "DEFAULT REGION";
+		area = Point::area(topleft, bottomright);
+
+	}
 	else
-		endQuad = 4;
+	{
+		do
+		{
+			startQuad = rand() % 3 + 1;
 
-	topleft = Point::randQuadP(size, startQuad);  //top left point
-	bottomright = Point::randQuadP(size, endQuad);    //bottom right point
+			if (startQuad == 1)
+				endQuad = rand() % 4 + 2;
+			else
+				endQuad = 4;
 
+			topleft = Point::randQuadP(size, startQuad);  //top left point
+			bottomright = Point::randQuadP(size, endQuad);    //bottom right point 
+			area = Point::area(topleft, bottomright);
+
+		} while (area < minArea);  //keep trying until we get a nice sized region
+	}
 	envPhraseChance = EPHRASE_CHANCE;
-	dataNotLoaded = false;
+	dataNotLoaded = true;
 }
+
+
 
 bool Region::isInside(const Point p)
 {

@@ -18,7 +18,7 @@ public:
 	Region(Point tl, Point br) : topleft(tl), bottomright(br), envPhraseChance(4), dataNotLoaded(true) {}
 	Region(Point tl, int width, int height); 
 	//constructor that just takes size (i.e. map size), and generates a random region within that area
-	Region(int size);
+	Region(int size, bool defaultRegion = false);
 
 	//is the point inside the region?  We need this to associate region pointers with rooms
 	bool isInside(const Point p);
@@ -28,6 +28,7 @@ public:
 	//virtual string greeting() { return entranceDesc; }   //use parent member
 	virtual string randEnv();  //{ return " you hear/see/smell a sound/thing/odor "; }
 	bool readyToLoad() { return dataNotLoaded; }
+	int getArea() { return area; }
 
 	//setters
 	void addObstacle(string s) { if (dataNotLoaded) obstacles.push_back(s); }
@@ -37,12 +38,14 @@ public:
 protected:
 	bool dataNotLoaded;
 	int envPhraseChance;  //lower is a better chance
+	int area;
 	Point topleft;
 	Point bottomright;
 	//string entranceDesc;  //use parent for this
 	//string interiorDesc;
 	vector<string> envPhrase;
 	vector<string> obstacles;
+
 };
 
 #endif

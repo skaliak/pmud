@@ -20,6 +20,8 @@ CmdPrompt::CmdPrompt()
 	commands['l'] = "look around";
 	commands['q'] = "quit";
 	commands['h'] = "help";
+
+	showGreeting();
 }
 
 string CmdPrompt::askPlayerName()
@@ -46,6 +48,11 @@ string CmdPrompt::askPlayerName()
 	} while (invalidInput);
 	
 
+}
+
+void CmdPrompt::showGreeting()
+{
+	cout << "\n\nTHIS IS A PLACEHOLDER\ngame title/greeting goes here\n\n";
 }
 
 void CmdPrompt::showHelp()

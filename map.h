@@ -18,7 +18,8 @@ public:
 	Wall* wall() { return &w; }  //probably don't need this
 	Room* randomRoom();  //random room from the map
 protected:
-	void loadRegion(Region r, int index);
+	void loadRegion(Region &r, int index);
+	void loadAllRegionData();
 	std::vector<Room> rooms;  //Should this be 2D?  or an array? nope
 	std::vector<Region> regions;
 	Wall w;

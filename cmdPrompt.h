@@ -14,6 +14,7 @@ public:
 	void showHelp();
 	char getCommand();		//this should allow showHelp to be called, and should loop until a valid cmd is entered
 	string askPlayerName();
+	void showGreeting();
 	//bool processCommand();  //how is the command actually executed?  should this be in a different class?  It's in GameController
 private:
 	string promptText;

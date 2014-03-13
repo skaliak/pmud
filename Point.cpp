@@ -2,10 +2,11 @@
 #include <iostream>
 #include <cstdlib>
 #include "Point.h"
+#include <cmath>
 //#include <curses.h>
 
 using std::rand;
-
+using std::abs;
 
 Point Point::Neighbor(Direction dir)
 {
@@ -28,6 +29,15 @@ Point Point::randP(int max)
 	int y = rand() % max;
 
 	return Point(x, y);
+}
+
+int Point::area(Point p1, Point p2)
+{
+	Point diff = p1 - p2;
+	int x = abs(diff.x);
+	int y = abs(diff.y);
+
+	return x * y;
 }
 
 Point Point::randQuadP(int max, int quad)

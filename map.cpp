@@ -21,11 +21,20 @@ Map::Map(int size)
 		regions.push_back(r);
 	}
 
+	//add the default region last
+	regions.push_back(Region(size, true));
+
+	//load strings from file
+	loadAllRegionData();  
+
+	//int loopcounter = 0;
+
 	//generate all the rooms
 	for (int y = 0; y < size; ++y)
 	{
 		for (int x = 0; x < size; ++x)
 		{
+			//++loopcounter;
 			if ((rand() % OBSTACLE_FREQUENCY) != 1) //randomly don't add rooms.  The "empty" spots will become obstacles
 			{
 				Point p(x,y);
@@ -34,7 +43,7 @@ Map::Map(int size)
 				//determine & assign region here
 				for (vector<Region>::iterator curReg = regions.begin(); curReg != regions.end(); ++curReg)
 				{
-					if (curReg->isInside(p))
+					if (curReg->isInside(p))   //isInside might be broken.
 					{
 						r.setRegion(&(*curReg));
 						break;  //break because regions can overlap
@@ -70,15 +79,21 @@ Map::Map(int size)
 		 } 
 
 	}
-	
-	//should anything else be done here?
-	
 
 }
 
+void Map::loadAllRegionData()
+{
+	int rindex = 1;
+	for (vector<Region>::iterator curReg = regions.begin(); curReg != regions.end(); ++curReg)
+	{
+		loadRegion(*curReg, rindex);
+		rindex++;
+	}
+}
 
 //read the data file and load the region data
-void Map::loadRegion(Region r, int index)
+void Map::loadRegion(Region &r, int index)
 {
 	string currentLine, assembledString;
 	string rMarker = "$";

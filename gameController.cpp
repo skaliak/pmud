@@ -6,7 +6,7 @@ GameController::GameController()
 	//if we get setup data for player (e.g. name) should cmdPrompt be used for input validation?
 
 	string name = "John Doe";
-	name = cmdPrompt.askPlayerName();  //this doesn't exist yet.
+	name = cmdPrompt.askPlayerName();
 
 	player = Player(&map, map.randomRoom(), name);   //passing reference to map could be a problem, since it's private...
 }
@@ -26,6 +26,9 @@ void GameController::Play()
 	*/
 
 	bool quit = false;
+
+	//initial look around
+	player.lookAround();
 
 	while (! quit)
 	{
@@ -57,7 +60,11 @@ bool GameController::processCommand(char c)
 		return false;
 	case 'q':
 		return true;
+	case 'h':
+		cmdPrompt.showHelp();
+		return false;
 	default:
-		return true;  //quit if all else fails
+		cmdPrompt.showHelp();
+		return false;  //show help if all else fails
 	}
 }
