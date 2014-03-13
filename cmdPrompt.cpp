@@ -22,6 +22,32 @@ CmdPrompt::CmdPrompt()
 	commands['h'] = "help";
 }
 
+string CmdPrompt::askPlayerName()
+{
+	string name;
+	bool invalidInput = true;
+
+	do
+	{
+		cout << "\nPlease enter your name: ";
+		getline(cin, name);
+
+		if (name != "")  //check if cmd is a key in the map
+		{
+			invalidInput = false;
+			cout << "\nGreetings, " << name << "!\n";
+			return name;
+		}
+		else
+		{
+			cout << "\nInvalid input\n";
+		}
+
+	} while (invalidInput);
+	
+
+}
+
 void CmdPrompt::showHelp()
 {
 	cout << "\nAvailable commands are:\n";

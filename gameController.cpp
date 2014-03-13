@@ -3,7 +3,12 @@
 GameController::GameController()
 {
 	//set up the player
+	//if we get setup data for player (e.g. name) should cmdPrompt be used for input validation?
 
+	string name = "John Doe";
+	name = cmdPrompt.askPlayerName();  //this doesn't exist yet.
+
+	player = Player(&map, map.randomRoom(), name);   //passing reference to map could be a problem, since it's private...
 }
 
 
@@ -11,6 +16,8 @@ void GameController::Play()
 {
 	/*
 		This should:
+		i. show some kind of intro?
+		ii. greet player by name?
 		1. get commands from player  (n, s, e, w, l)
 		2. process commands (move in [dir] or get descriptions)
 		3. repeat

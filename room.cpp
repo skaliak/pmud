@@ -14,7 +14,7 @@ string Room::getDescription(Room *r)
 	if (r->region != region)
 	{
 		//player entered a new region, so tell them about it
-		desc += region->getDescription;
+		desc += region->getDescription();
 		desc += "\n";
 	}
 
@@ -58,7 +58,7 @@ Room *Room::exit(Point::Direction dir)
 	}
 }
 
-string Room::listExits()
+string Room::listExits() 
 {
 	string obstacles = "";
 	string exits = "Possible exits are: ";
@@ -98,5 +98,7 @@ string Room::listExits()
 		}
 	}
 
-	return ;
+	exits += obstacles;
+
+	return exits;
 }

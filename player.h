@@ -15,7 +15,7 @@
 class Player : public Entity
 {
 public:
-	Player();
+	Player(){}
 	Player(Map *m, Room *startRoom, std::string playername);
 	void showExits();  //this should get an array of room pointers or something?
 	void lookAround(); //gets the current room description and list of exits

@@ -7,7 +7,7 @@ Player::Player(Map *m, Room *startRoom, std::string playername )
 {
 	map = m;
 	currentRoom = startRoom;
-	lastRoom = startRoom;
+	lastRoom = NULL;
 	description = playername;
 }
 

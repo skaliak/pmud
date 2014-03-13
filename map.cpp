@@ -3,13 +3,13 @@
 #include <algorithm>
 #include <fstream>
 #include <string>
-
-
+#include <cstdlib>
 
 using std::fstream;
 using std::vector;
 using std::size_t;
 using std::string;
+using std::rand;
 
 Map::Map(int size)
 {
@@ -77,7 +77,7 @@ Map::Map(int size)
 }
 
 
-//read the data file and load the data
+//read the data file and load the region data
 void Map::loadRegion(Region r, int index)
 {
 	string currentLine, assembledString;
@@ -150,4 +150,12 @@ void Map::loadRegion(Region r, int index)
 
 	r.lockData();
 	fin.close();
+}
+
+Room* Map::randomRoom()
+{
+	//return a random room on the map, for the player starting position, etc.
+	int randint = rand() % rooms.size();
+
+	return &rooms.at(randint);
 }

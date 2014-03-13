@@ -13,7 +13,8 @@ public:
 	CmdPrompt();
 	void showHelp();
 	char getCommand();		//this should allow showHelp to be called, and should loop until a valid cmd is entered
-	//bool processCommand();  //how is the command actually executed?  should this be in a different class?
+	string askPlayerName();
+	//bool processCommand();  //how is the command actually executed?  should this be in a different class?  It's in GameController
 private:
 	string promptText;
 	map<char, string> commands;  //maybe the value type should be direction enum?
