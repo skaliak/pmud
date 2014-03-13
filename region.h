@@ -6,6 +6,7 @@
 #include <vector>
 
 #define DATAFILE "env_data.txt"
+#define EPHRASE_CHANCE 4
 
 using std::string;
 using std::vector;

@@ -6,13 +6,13 @@ using std::rand;
 
 Region::Region(Point tl, int width, int height)
 {
-	envPhraseChance = 4;  //need to make this a macro or const!!
+	envPhraseChance = EPHRASE_CHANCE;
 	topleft = tl;
 	bottomright = tl + Point(width, height);
 	dataNotLoaded = false;
 }
 
-Region::Region(int size)
+Region::Region(int size)  //make a new region within the given map size
 {
 	int startQuad, endQuad;
 	startQuad = rand() % 3 + 1;
@@ -25,7 +25,7 @@ Region::Region(int size)
 	topleft = Point::randQuadP(size, startQuad);  //top left point
 	bottomright = Point::randQuadP(size, endQuad);    //bottom right point
 
-	envPhraseChance = 4; //need to make this a macro or const!!
+	envPhraseChance = EPHRASE_CHANCE;
 	dataNotLoaded = false;
 }
 

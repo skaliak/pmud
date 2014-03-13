@@ -8,7 +8,7 @@ class Entity
 public:
 	Entity() : description("") {}
 	Entity(std::string desc) : description(desc) {}
-	std::string getDescription() { return description; }
+	virtual std::string getDescription() { return description; }
 
 	//should only be allowed if description is ""
 	virtual void setDescription(std::string desc) { if (description == "") description = desc; }

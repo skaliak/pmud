@@ -2,6 +2,9 @@
 #define MAP_H
 
 #define DEFAULT_MAP_SIZE 50
+//higher = more frequent
+#define OBSTACLE_FREQUENCY 8 
+#define REGION_COUNT 3
 
 #include <vector>
 #include "room.h"

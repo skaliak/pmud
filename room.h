@@ -10,18 +10,25 @@
 class Room : public Entity
 {
 public:
+	//constructor
 	Room(Point l) : loc(l) {}
-	Point getLoc() { return loc; }
+
+	//setters
 	void setExits(Room *e, Room *w, Room *n, Room *s);
 	void setE(Room *e) { E = e; }
 	void setW(Room *w) { W = w; }
 	void setN(Room *n) { N = n; }
 	void setS(Room *s) { S = s; }
-	//void findAndSetExits(std::vector<Room> &v, int mapsize);  //is this necessary?
 	void setExit(Room *r, Point::Direction dir);
+	void setRegion(Region *reg) { region = reg; }
+
+	//getters
+	Point getLoc() { return loc; }
 	Room *exit(Point::Direction dir);
 	std::string listExits();
+	std::string getDescription(Room *r);   //overload (or override?) of parent:  if r is a different env, get env desc
 
+	//operators
 	bool operator==(Room const& rhs) { return (loc == rhs.loc); }
 protected:
 	Point loc;

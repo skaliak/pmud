@@ -3,9 +3,12 @@
 #include <iostream>
 #include "player.h"
 
-Player::Player()
+Player::Player(Map *m, Room *startRoom, std::string playername )
 {
-	//?
+	map = m;
+	currentRoom = startRoom;
+	lastRoom = startRoom;
+	description = playername;
 }
 
 
@@ -13,7 +16,7 @@ Player::Player()
 void Player::lookAround()
 {
 	//get the description of the room, at least
-	std::string roomDesc = currentRoom->getDescription();
+	std::string roomDesc = currentRoom->getDescription(lastRoom);
 	std::cout << "\n\n" << roomDesc << "\n\n";
 	std::cout << currentRoom->listExits() << "\n\n";
 }

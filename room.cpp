@@ -6,6 +6,24 @@
 using std::string;
 using std::vector;
 
+string Room::getDescription(Room *r)
+{
+	string desc = description;
+	desc += "\n";
+
+	if (r->region != region)
+	{
+		//player entered a new region, so tell them about it
+		desc += region->getDescription;
+		desc += "\n";
+	}
+
+	//add a random "flavor phrase" relevant to the environment
+	desc += region->randEnv();
+
+	return desc;
+}
+
 void Room::setExit(Room *r, Point::Direction dir)
 {
 	switch(dir)

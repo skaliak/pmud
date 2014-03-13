@@ -4,6 +4,8 @@
 #include <fstream>
 #include <string>
 
+
+
 using std::fstream;
 using std::vector;
 using std::size_t;
@@ -11,18 +13,36 @@ using std::string;
 
 Map::Map(int size)
 {
-	//Room **tmpArr;
-	//tmpArr = new Room[size][size];
+	//generate regions here
+
+	for (int i = 0; i < REGION_COUNT; i++)
+	{
+		Region r(size);
+		regions.push_back(r);
+	}
 
 	//generate all the rooms
 	for (int y = 0; y < size; ++y)
 	{
 		for (int x = 0; x < size; ++x)
 		{
-			Point p(x,y);
-			Room r(p);
-			//tmpArr[x][y] = r;
-			rooms.push_back(r);
+			if ((rand() % OBSTACLE_FREQUENCY) != 1) //randomly don't add rooms.  The "empty" spots will become obstacles
+			{
+				Point p(x,y);
+				Room r(p);
+
+				//determine & assign region here
+				for (vector<Region>::iterator curReg = regions.begin(); curReg != regions.end(); ++curReg)
+				{
+					if (curReg->isInside(p))
+					{
+						r.setRegion(&(*curReg));
+						break;  //break because regions can overlap
+					}
+				}
+
+				rooms.push_back(r);
+			}
 		}
 	}
 
@@ -51,8 +71,8 @@ Map::Map(int size)
 
 	}
 	
-	//need to add more, e.g. for creating regions and obstacles (deleted rooms become obstacles)
-
+	//should anything else be done here?
+	
 
 }
 
