@@ -84,7 +84,7 @@ string Room::listExits()
 	else
 		o.push_back(" the West ");
 
-	exits += ".\n";
+	exits += ".\n\n";
 
 	if (o.size() > 0)
 	{
@@ -99,6 +99,8 @@ string Room::listExits()
 	}
 
 	exits += obstacles;
+	exits += "\n";
+
 
 	return exits;
 }

@@ -1,10 +1,23 @@
-$$Plains
-It's plain.
+$$Village
+You are in a village.  It is a town of wide extent and dense construction, yet one with a portentous dearth of visible life.
+From the tangle of chimney-pots scarcely a wisp of smoke came, and the three tall steeples loomed stark and unpainted against
+the horizon. One of them is crumbling down at the top, and in that and another there are only black gaping holes where
+clock-dials should be. The vast huddle of sagging gambrel roofs and peaked gables conveys with offensive clearness the idea
+of wormy decay, and you can see that many roofs have wholly caved in. There are some large square Georgian houses, too,
+with hipped roofs, cupolas, and railed "widow's walks." These are mostly well back from the road, and one or two seem
+to be in moderately sound condition. Stretching away from among them you see the rusted, grass-grown line of an abandoned
+railway, with leaning telegraph-poles now devoid of wires, and the half-obscured lines of the old carriage roads.
 @
-you smell something.
+You smell something vaguely fishy.
+As you pass by a nearby house, you hear it's windows and shutters being quickly closed.
+You hear what sounds like shouting in the distance.
+Something sounds like footsteps behind you, but when you turn to look, no one is there.
 @
-a hole.
-a wall.
+a small livestock pen.
+a crumbling wall.
+a weatherd wooden fence.
+what appears to be a sinkhole, with no visible bottom.
+a house.
 @
 $$Default
 This is the default region.  This text should be replaced.
