@@ -10,8 +10,9 @@ class Item : public Entity
 public:
 	Item();
 protected:
-	Room *location;
-	
+	Room *location;  //is this necessary?
+	int weight;
+	bool immobile;
 };
 
 #endif
