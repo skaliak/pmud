@@ -16,7 +16,7 @@ class Factory
 {
 public:
 	Factory();
-	string generateWeaponName();
+	string generateWeaponName();  //this could return a struct instead...
 	Item getWeapon();
 private:
 	vector<string> wMaterials;

@@ -11,6 +11,8 @@ string Room::getDescription(Room *r)
 	string desc = description;
 	desc += "\n";
 
+	//on the next line, we need to check if r is NULL first, or there will be a nasty
+	//runtime error when r->region is called!
 	if (r == NULL || r->region != region)
 	{
 		//player entered a new region, so tell them about it
