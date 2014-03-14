@@ -6,6 +6,9 @@
 #include "entity.h"
 #include "Point.h"
 #include "region.h"
+#include "item.h"
+
+using std::string;
 
 class Room : public Entity
 {
@@ -21,16 +24,19 @@ public:
 	void setS(Room *s) { S = s; }
 	void setExit(Room *r, Point::Direction dir);
 	void setRegion(Region *reg) { region = reg; }
+	void putItem(Item *i);
 
 	//getters
 	Point getLoc() { return loc; }
 	Room *exit(Point::Direction dir);
-	std::string listExits();
-	std::string getDescription(Room *r);   //overload (or override?) of parent:  if r is a different env, get env desc
+	string listExits();
+	string getDescription(Room *r);   //overload (or override?) of parent:  if r is a different env, get env desc
+	Item *getItem() { return item; }
 
 	//operators
 	bool operator==(Room const& rhs) { return (loc == rhs.loc); }
 protected:
+	Item *item;  //only 1 item per room
 	Point loc;
 	Room *E;
 	Room *W;

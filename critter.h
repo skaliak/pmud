@@ -14,6 +14,11 @@ public:
 	Critter(){}
 	Critter(Map *m, Room *startRoom, string name);
 	virtual void move(Point::Direction dir);
+
+	//need to create these two functions:
+	int getDamage();
+	static Critter* battle(Critter *c1, Critter *c2);  //this probably would work better if it were not static
+
 protected:
 	int hitPoints;
 	int strength;

@@ -10,19 +10,24 @@
 #include "room.h"
 #include "region.h"
 #include "wall.h"
+#include "item.h"
+
+using std::vector;
 
 class Map
 {
 public:
 	Map(int size = DEFAULT_MAP_SIZE);
-	Wall* wall() { return &w; }  //probably don't need this
+	//Wall* wall() { return &w; }  //probably don't need this
 	Room* randomRoom();  //random room from the map
 protected:
 	void loadRegion(Region &r, int index);
 	void loadAllRegionData();
-	std::vector<Room> rooms;  //Should this be 2D?  or an array? nope
-	std::vector<Region> regions;
-	Wall w;
+	vector<Room> rooms;  //Should this be 2D?  or an array? nope
+	vector<Region> regions;
+	vector<Item> items;  //need a function to populate this
+
+	//Wall w;
 };
 
 #endif

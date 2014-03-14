@@ -21,6 +21,14 @@ string Room::getDescription(Room *r)
 	//add a random "flavor phrase" relevant to the environment
 	desc += region->randEnv();
 
+	//if there's an item, add it's description
+	if (item != NULL)
+	{
+		desc += "\nOn the ground is\n";
+		desc += item->getDescription();
+		desc += "\n";
+	}
+
 	return desc;
 }
 
