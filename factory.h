@@ -17,6 +17,7 @@ class Factory
 public:
 	Factory();
 	string generateWeaponName();
+	Item getWeapon();
 private:
 	vector<string> wMaterials;
 	vector<string> wKinds;

@@ -8,23 +8,30 @@
 #define PLAYER_H
 
 #include <string>
+#include <vector>
 #include "entity.h"
 #include "room.h"
 #include "map.h"
+#include "critter.h"
+#include "item.h"
 
-class Player : public Entity
+using std::string;
+using std::vector;
+
+class Player : public Critter
 {
 public:
 	Player(){}
-	Player(Map *m, Room *startRoom, std::string playername);
+	Player(Map *m, Room *startRoom, string name) : Critter(m, startRoom, name) {}
 	void showExits();  //this should get an array of room pointers or something?
 	void lookAround(); //gets the current room description and list of exits
 	void move(Point::Direction dir);  //moves the player in this direction
 protected:
-	std::string name;  //can this just be description from parent class?
-	Room *currentRoom;
-	Room *lastRoom;
-	Map *map;	
+	vector<Item *> inventory;
+	//refactored these:
+	//Room *currentRoom;
+	//Room *lastRoom;
+	//Map *map;	
 	
 };
 

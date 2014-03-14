@@ -1,4 +1,9 @@
 #include "factory.h"
+#include "room.h"
+#include "item.h"
+#include <cstdlib>
+
+using std::rand;
 
 Factory::Factory()
 {
@@ -29,6 +34,21 @@ string Factory::generateWeaponName()
 			weapon += " of";
 		ADDSP(weapon);
 	}
+
+	return weapon;
+}
+
+Item Factory::getWeapon()
+{
+	Item weapon;
+	bool immobile = false;
+	string wName = generateWeaponName();
+	int weight = rand() % 15;
+
+	if ((rand() % 20) == 10)
+		immobile = true;
+
+	weapon = Item(wName, immobile, weight);
 
 	return weapon;
 }

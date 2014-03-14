@@ -18,13 +18,21 @@ a crumbling wall.
 a weatherd wooden fence.
 what appears to be a sinkhole, with no visible bottom.
 a house.
+a ditch or small canal, partly filled with brackish water.
 @
-$$Default
-This is the default region.  This text should be replaced.
+$$Void
+You are somewhere else.  You try to describe this place to yourself,
+but the only thing you can think of is [PLACEHOLDER DESCRIPTION].
 @
 Something happens.
+You pause for a moment, thinking something interesting might happen, but it doesn't.
+You wonder if you'll ever make it to somewhere more interesting.
+And then...
 @
-An obstacle.
+an obstacle.
+an invisible wall.
+a dark void.
+a huge black monolith.
 @
 $$Desert
 You've reached an area that apparently has not seen any form of precipitation

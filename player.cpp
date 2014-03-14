@@ -3,6 +3,7 @@
 #include <iostream>
 #include "player.h"
 
+/* refactored to class Critter
 Player::Player(Map *m, Room *startRoom, std::string playername )
 {
 	map = m;
@@ -10,7 +11,7 @@ Player::Player(Map *m, Room *startRoom, std::string playername )
 	lastRoom = NULL;
 	description = playername;
 }
-
+*/
 
 //gets the current room description and list of exits
 void Player::lookAround()
