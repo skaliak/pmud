@@ -15,12 +15,20 @@ Critter::Critter(Map *m, Room *startRoom, string name)
 	hitPoints = rand() % 50 + 20;
 }
 
-void Critter::move(Point::Direction dir)
+bool Critter::move(Point::Direction dir)
 {
-
+	//need to check if it's possible to move in that direction, then
+	lastRoom = currentRoom;
+	currentRoom = currentRoom->exit(dir);
+	if (currentRoom == NULL)
+	{
+		//std::cout << "\n\nYou can't go that way!\n\n";
+		currentRoom = lastRoom;
+		return false;
+	}
 }
 
-//Critter* battle(Critter *c1, Critter *c2);  //this probably would work better if it were not static
+
 
 
 

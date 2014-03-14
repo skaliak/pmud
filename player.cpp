@@ -23,18 +23,13 @@ void Player::lookAround()
 }
 
 //moves the player in this direction
-void Player::move(Point::Direction dir)
+bool Player::move(Point::Direction dir)
 {
-	//need to check if it's possible to move in that direction, then
-	lastRoom = currentRoom;
-	currentRoom = currentRoom->exit(dir);
-	if (currentRoom == NULL)
+	bool result = Critter::move(dir);
+	if (!result)
 	{
 		std::cout << "\n\nYou can't go that way!\n\n";
-		currentRoom = lastRoom;
 	}
-	else
-	{
-		lookAround();
-	}
+
+	return result;
 }

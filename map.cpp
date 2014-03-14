@@ -59,6 +59,7 @@ Map::Map(int size)
 	vector<Room>::iterator rend = rooms.end();
 	vector<Room>::iterator found;
 
+	//determine and set exits for all the rooms!
 	for (vector<Room>::iterator currentRoom = rbeg; currentRoom != rend; ++currentRoom)
 	{
 		//get list of neighbor points, find matching rooms with stl find, and assign pointer to nsew
@@ -77,6 +78,7 @@ Map::Map(int size)
 				currentRoom->setExit(NULL, (Point::Direction)direction);
 		 	}
 		 } 
+
 
 	}
 

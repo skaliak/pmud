@@ -5,11 +5,18 @@
 #include "entity.h"
 #include "room.h"
 
+class Room;
+
 class Item : public Entity
 {
 public:
-	Item();
-	Item(string name, bool immobile = false, int weight = 1) : Entity(name), immobile(immobile), weight(weight), location(NULL) {}
+	Item(){}
+	Item(string name, bool i = false, int w = 1) : Entity(name)
+	{
+		immobile = i;
+		weight = w;
+		location = NULL;
+	}
 
 	//getters
 	bool isImmobile() { return immobile; }

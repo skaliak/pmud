@@ -114,3 +114,21 @@ string Room::listExits()
 
 	return exits;
 }
+
+void Room::lockExits()
+{
+	if (exitsAreNotSet)
+	{
+		exits = { N, S, E, W };
+
+		for (auto it = exits.begin(); it != exits.end(); ++it)
+		{
+			if (*it == NULL)
+			{
+				it = exits.erase(it);  //I have a bad feeling abou this
+			}
+		}
+	}
+
+	exitsAreNotSet = false;
+}

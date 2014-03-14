@@ -9,10 +9,13 @@
 #include <vector>
 #include "room.h"
 #include "region.h"
-#include "wall.h"
+//#include "wall.h"
 #include "item.h"
 
 using std::vector;
+
+class Room;
+class Item;
 
 class Map
 {

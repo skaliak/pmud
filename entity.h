@@ -11,7 +11,8 @@ public:
 	Entity(std::string desc) : description(desc) {}
 
 	//we (probably) shouldn't ever copy an entity -- this throws an exception if that happens:
-	Entity(Entity& other) { throw("Copy constructor called on Entity! Didn't pass by reference!"); }
+	//except it doesn't compile with this -- something to do with vector allocator...
+	//Entity(Entity& other) { throw("Copy constructor called on Entity! Didn't pass by reference!"); }
 
 	//getters
 	virtual std::string getDescription() { return description; }

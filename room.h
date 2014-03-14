@@ -7,8 +7,12 @@
 #include "Point.h"
 #include "region.h"
 #include "item.h"
+#include "critter.h"
 
 using std::string;
+
+class Item;
+class Critter;
 
 class Room : public Entity
 {
@@ -17,7 +21,8 @@ public:
 	Room(Point l) : loc(l) {}
 
 	//setters
-	void setExits(Room *e, Room *w, Room *n, Room *s);
+	//void setExits(Room *e, Room *w, Room *n, Room *s);
+	void lockExits();  //this gets called by Map after all exits are set.
 	void setE(Room *e) { E = e; }
 	void setW(Room *w) { W = w; }
 	void setN(Room *n) { N = n; }
@@ -25,6 +30,7 @@ public:
 	void setExit(Room *r, Point::Direction dir);
 	void setRegion(Region *reg) { region = reg; }
 	void putItem(Item *i);
+	bool enterCritter(Critter *c);   //return false if there's already a critter present
 
 	//getters
 	Point getLoc() { return loc; }
@@ -36,13 +42,15 @@ public:
 	//operators
 	bool operator==(Room const& rhs) { return (loc == rhs.loc); }
 protected:
-	Item *item;  //only 1 item per room
+	Item *item;  //only 1 item per room?  It is automatically detected and described by getDescription
+	Critter *critter;
 	Point loc;
 	Room *E;
 	Room *W;
 	Room *N;
-	Room *S;	
-	bool exitsAreSet;
+	Room *S;
+	vector<Room *> exits;  //need this to enable critters to move autonomously.  But how does it get populated?  Should have been a std::map
+	bool exitsAreNotSet;
 	Region *region;
 };
 

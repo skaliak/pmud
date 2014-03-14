@@ -33,7 +33,7 @@ public:
 
 	void showExits();  //this should get an array of room pointers or something?
 	void lookAround(); //gets the current room description and list of exits
-	void move(Point::Direction dir);  //moves the player in this direction
+	bool move(Point::Direction dir);  //moves the player in this direction
 
 	//virtual from parent:
 	//void takeDamage(int damage, Entity source); //override from parent... is it needed?
