@@ -2,8 +2,9 @@
 #include "gameController.h"
 #include <time.h>
 #include <cassert>
+#include "factory.h"
 
-//#include <iostream>
+#include <iostream>
 
 using std::srand;
 
@@ -20,13 +21,30 @@ namespace pmudTests
 		assert(! r.isInside(p2));
 	}
 
+	void TestGenerateWeaponName()
+	{
+		Factory f;
+		string s = f.generateWeaponName();
+		assert(s.length() > 0);
+	}
+
+	void GenerateSomeWeaponNames()
+	{
+		Factory f;
+		for (int i = 0; i < 20; ++i)
+		{
+			std::cout << f.generateWeaponName() << "\n";
+		}
+	}
+
 	void RunAllTests()
 	{
-		//char c;
+		char c;
 		TestIsInside();
-
-		//std::cout << "tests successful!";
-		//std::cin >> c;
+		TestGenerateWeaponName();
+		GenerateSomeWeaponNames();
+		std::cout << "tests successful!";
+		std::cin >> c;
 	}
 
 
@@ -40,8 +58,8 @@ int main()
 
 	pmudTests::RunAllTests();
 
-	GameController gc;
-	gc.Play();
+	//GameController gc;
+	//gc.Play();
 
 	return 0;
 }

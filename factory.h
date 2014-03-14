@@ -1,6 +1,8 @@
 #ifndef FACTORY_H
 #define FACTORY_H
 
+#define ADDSP(x) x += " ";
+
 #include "item.h"
 #include <vector>
 #include <string>
@@ -14,7 +16,7 @@ class Factory
 {
 public:
 	Factory();
-	string generateWeapon();
+	string generateWeaponName();
 private:
 	vector<string> wMaterials;
 	vector<string> wKinds;
