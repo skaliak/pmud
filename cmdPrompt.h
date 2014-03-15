@@ -2,7 +2,7 @@
 #define CMDPROMPT_H
 
 #include <map>
-
+#include <string>
 
 using std::string;
 using std::map;
