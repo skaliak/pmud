@@ -49,6 +49,7 @@ void Map::generateRegions()
 	}
 }
 
+/* old vector version
 void Map::setExits()
 {
 	vector<Room *>::iterator rbeg = vrooms.begin();
@@ -79,7 +80,36 @@ void Map::setExits()
 		//currentRoom->lockExits();
 	}
 }
+*/
 
+void Map::setExits()
+{
+	int rcount = (size * size);
+
+	//determine and set exits for all the rooms!
+	for (int i = 0; i < rcount; ++i)
+	{
+		//get list of neighbor points, find matching rooms with stl find, and assign pointer to nsew
+		for (int direction = 0; direction < 4; ++direction)
+		{
+			//4 directions
+			Point neighbor = rooms[i].getLoc().Neighbor((Point::Direction)direction);
+
+			//this is a problem, because vrooms is now pointers
+			Room *found = std::find(rooms, rooms + rcount -1, Room(neighbor));
+			if (found != rooms + rcount)
+			{
+				rooms[i].setExit(found, (Point::Direction)direction);
+			}
+			else
+			{
+				rooms[i].setExit(NULL, (Point::Direction)direction);
+			}
+		}
+
+		//currentRoom->lockExits();
+	}
+}
 
 void Map::generateRooms()
 {
@@ -249,4 +279,12 @@ Room* Map::randomRoom()
 	int randint = rand() % vrooms.size();
 
 	return vrooms.at(randint);
+}
+
+Map::~Map()
+{
+	delete[] rooms;
+	delete[] critters;
+	delete[] weapons;
+	delete[] regions;
 }
