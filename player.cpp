@@ -39,3 +39,8 @@ bool Player::move(Point::Direction dir)
 
 	return result;
 }
+
+void Player::die(const Entity &source)
+{
+
+}

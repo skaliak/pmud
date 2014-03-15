@@ -1,4 +1,4 @@
-$$Village
+$The Village
 You are in a village.  It is a town of wide extent and dense construction, yet one with a portentous dearth of visible life.
 From the tangle of chimney-pots scarcely a wisp of smoke came, and the three tall steeples loomed stark and unpainted against
 the horizon. One of them is crumbling down at the top, and in that and another there are only black gaping holes where
@@ -20,7 +20,7 @@ what appears to be a sinkhole, with no visible bottom.
 a house.
 a ditch or small canal, partly filled with brackish water.
 @
-$$Void
+$The Void
 You are somewhere else.  You try to describe this place to yourself,
 but the only thing you can think of is [PLACEHOLDER DESCRIPTION].
 @
@@ -34,7 +34,7 @@ an invisible wall.
 a dark void.
 a huge black monolith.
 @
-$$Desert
+$The Desert
 You've reached an area that apparently has not seen any form of precipitation
 for years.  This is the desert.  Vegetation is sparse, and what little there is
 seems to be barely clinging to life.  It is hot, and you can already feel a painful
@@ -52,7 +52,7 @@ a cluster of large thorny cactus.
 a very deep crevasse.
 some jagged boulders.
 @
-$$Forest
+$The Forest
 You're entering a forest.  Ancient trees hundreds of feet high surround you.
 Not much light penetrates down to the forest floor, so there is relatively
 little undergrowth.  A faint earthy organic smell fills the air.

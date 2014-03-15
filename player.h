@@ -33,7 +33,7 @@ public:
 
 	//virtual from parent:
 	//void takeDamage(int damage, Entity source); //override from parent... is it needed?
-	void die(Entity source);   //definitely need to override this.
+	void die(const Entity &source);   //definitely need to override this.
 
 protected:
 	vector<Item *> inventory;

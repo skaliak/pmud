@@ -28,13 +28,13 @@ public:
 	void setAttribs(Map *m, Room *startRoom, string name);
 	bool stillAlive() { return (hitPoints > 0); }
 
-	int attack();
+	int attack();  //returns a random int from 0 to strength
 
 	virtual void takeDamage(int damage, Entity &source); //take damage
 protected:
 	//virtual void teleport(Room *r);  //is it necessary?  How does critter get to the "graveyard" when it dies?  
 	//Does graveyard even need to be a real room?
-	virtual void die(Entity &source);  //removes critter, or just turns it into a dead body?
+	virtual void die(const Entity &source);  //removes critter, or just turns it into a dead body?
 	virtual void battle(Critter &opponent);   //since this is protected, does it ever get called by an npc?
 	bool initialized;
 	int hitPoints;

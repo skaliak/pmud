@@ -28,6 +28,7 @@ public:
 	virtual string obstacle();  //random obstacle phrase
 	//virtual string greeting() { return entranceDesc; }   //use parent member
 	virtual string randEnv();  //{ return " you hear/see/smell a sound/thing/odor "; }
+	string getShortDesc() { return shortDesc; }
 	bool readyToLoad() { return dataNotLoaded; }
 	int getArea() { return area; }
 
@@ -35,6 +36,7 @@ public:
 	void addObstacle(string s) { if (dataNotLoaded) obstacles.push_back(s); }
 	void addEnvPhrase(string s) { if (dataNotLoaded) envPhrase.push_back(s); }
 	void setDescription(string s) { if (dataNotLoaded) description = s; }
+	void setShortDesc(string s) { if (dataNotLoaded) shortDesc = s; }
 	void lockData() { if (dataNotLoaded) dataNotLoaded = false; }
 protected:
 	bool dataNotLoaded;
@@ -43,7 +45,7 @@ protected:
 	Point topleft;
 	Point bottomright;
 	//string entranceDesc;  //use parent for this
-	//string interiorDesc;
+	string shortDesc;
 	vector<string> envPhrase;
 	vector<string> obstacles;
 

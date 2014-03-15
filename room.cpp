@@ -17,8 +17,14 @@ string Room::getDescription(Room *r)
 	{
 		//player entered a new region, so tell them about it
 		desc += region->getDescription();
-		desc += "\n";
 	}
+	else
+	{
+		//this is just the name, to remind them where they are
+		desc += region->getShortDesc();
+	}
+	
+	desc += "\n";
 
 	//add a random "flavor phrase" relevant to the environment
 	desc += region->randEnv();
@@ -33,7 +39,7 @@ string Room::getDescription(Room *r)
 
 	if (critter != NULL && critter->getDescription() != "")
 	{
-		desc += "\nThere is a creature here!\n";
+		desc += "\n\nThere is a creature here!\n";
 		desc += critter->getDescription();
 		desc += "\n";
 	}

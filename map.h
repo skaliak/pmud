@@ -28,7 +28,7 @@ class Map
 {
 public:
 	Map(int size = DEFAULT_MAP_SIZE);
-	//~Map();
+	~Map();
 	Room* randomRoom();  //random room from the map
 protected:
 	void generateRegions();
@@ -52,6 +52,15 @@ protected:
 	//Item *weapons;
 	//Critter *critters;
 	
+	template<typename T>
+	void cleanUp(T v)
+	{
+		while (!v.empty())
+		{
+			delete v.back();
+			v.pop_back();
+		}
+	}
 };
 
 #endif

@@ -76,6 +76,9 @@ void Map::setExits()
 			//4 directions
 			Point neighbor = (*currentRoom)->getLoc().Neighbor((Point::Direction)direction);
 
+			//this is a problem, because vrooms is now pointers
+			//solution:  don't use find, compare manually!  
+			//found = std::find(rbeg, rend, Room(neighbor));
 			for (found = rbeg; found != rend; ++found)
 			{
 				if (**found == Room(neighbor))
@@ -84,8 +87,6 @@ void Map::setExits()
 				}
 			}
 
-			//this is a problem, because vrooms is now pointers
-			//found = std::find(rbeg, rend, Room(neighbor));
 			if (found != rend)
 			{
 				(*currentRoom)->setExit(*found, (Point::Direction)direction);
@@ -96,7 +97,7 @@ void Map::setExits()
 			}
 		}
 
-		//currentRoom->lockExits();
+		//currentRoom->lockExits();  //see if this works now
 	}
 }
 
@@ -247,6 +248,8 @@ void Map::loadRegion(Region &r, int index)
 		found = currentLine.find(rMarker);
 		if (found != string::npos)
 		{
+			string shortDesc = currentLine.substr(1, string::npos);
+			r.setShortDesc(shortDesc);
 			++count;
 		}
 	}
@@ -313,12 +316,13 @@ Room* Map::randomRoom()
 	return vrooms.at(randint);
 }
 
-/*
+
+
+
 Map::~Map()
 {
-	delete[] rooms;
-	delete[] critters;
-	delete[] weapons;
-	delete[] regions;
+	cleanUp(vregions);
+	cleanUp(vcritters);
+	cleanUp(items);
+	cleanUp(vrooms);
 }
-*/
