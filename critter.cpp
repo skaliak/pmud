@@ -26,6 +26,8 @@ bool Critter::move(Point::Direction dir)
 		currentRoom = lastRoom;
 		return false;
 	}
+
+	return true;
 }
 
 

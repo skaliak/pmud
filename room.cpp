@@ -24,10 +24,17 @@ string Room::getDescription(Room *r)
 	desc += region->randEnv();
 
 	//if there's an item, add it's description
-	if (item != NULL)
+	if (item != NULL && item->getDescription() != "")
 	{
 		desc += "\nOn the ground is\n";
 		desc += item->getDescription();
+		desc += "\n";
+	}
+
+	if (critter != NULL && critter->getDescription() != "")
+	{
+		desc += "\nThere is a creature here!\n";
+		desc += critter->getDescription();
 		desc += "\n";
 	}
 
@@ -65,6 +72,8 @@ Room *Room::exit(Point::Direction dir)
 			return S;
 		case Point::Direction::WEST:
 			return W;
+		default:
+			return NULL;
 	}
 }
 
@@ -126,9 +135,24 @@ void Room::lockExits()
 			if (*it == NULL)
 			{
 				it = exits.erase(it);  //I have a bad feeling abou this
+				if (it == exits.end())
+				{
+					break;
+				}
 			}
 		}
 	}
 
 	exitsAreNotSet = false;
+}
+
+bool Room::enterCritter(Critter *c)
+{
+	if (critter != NULL)
+		return false;
+	else
+	{
+		critter = c;
+		return true;
+	}
 }

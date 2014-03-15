@@ -19,6 +19,9 @@ Factory::Factory()
 		"freedom", "justice", "dispair", "calm", "silliness", "deceit", "bravery", "brilliance", "knowledge",
 		"anger", "peace", "love", "patience", "itchyness", "flakiness", "annoyance", "shadows" };
 
+	cNames = { "Jeff", "Steve", "Francis", "Frank", "Bob", "Joe", "Tom", "Fred", "Chauncy", "Harold", "Allan", "George", "Jim", "Jack" };
+	cKinds = { "an orc", "a kobold", "a giant spider", "a bear", "a wolf", "a gelatinous cube", "a crocodile",
+		"a land shark", "a demon", "a lawyer", "an anthropomorphic wardrobe" };
 
 	weaponWords = { wConditions, wMaterials, wKinds, wQualityAdjs, wQualityyNouns };
 }
@@ -51,4 +54,15 @@ Item Factory::getWeapon()
 	weapon = Item(wName, immobile, weight);
 
 	return weapon;
+}
+
+string Factory::getCritterName()
+{
+	string name = randElement(cNames);
+	string desc = randElement(cKinds);
+
+	desc += " named ";
+	desc += name;
+
+	return desc;
 }

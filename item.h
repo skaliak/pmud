@@ -16,6 +16,7 @@ public:
 		immobile = i;
 		weight = w;
 		location = NULL;
+		heldByPlayer = false;
 	}
 
 	//getters

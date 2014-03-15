@@ -30,6 +30,10 @@ bool Player::move(Point::Direction dir)
 	{
 		std::cout << "\n\nYou can't go that way!\n\n";
 	}
+	else
+	{
+		lookAround();
+	}
 
 	return result;
 }

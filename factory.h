@@ -19,7 +19,7 @@ public:
 	Factory();
 	string generateWeaponName();  //this could return a struct instead...
 	Item getWeapon();
-	Critter getCritter();   //generate a random critter -- or just it's name
+	string getCritterName();   //generate a random critter -- or just it's name
 
 	template<typename T>
 	T randElement(vector<T> source)
@@ -33,14 +33,13 @@ private:
 	vector<string> wConditions;
 	vector<string> wQualityAdjs;
 	vector<string> wQualityyNouns;
+	vector<string> cNames;
+	vector<string> cKinds;
 
 	vector<vector<string>> weaponWords;
 
 	//is this going to work??
 
 };
-
-
-
 
 #endif // !FACTORY_H
