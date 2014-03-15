@@ -28,7 +28,7 @@ class Map
 {
 public:
 	Map(int size = DEFAULT_MAP_SIZE);
-	~Map();
+	//~Map();
 	Room* randomRoom();  //random room from the map
 protected:
 	void generateRegions();
@@ -43,14 +43,14 @@ protected:
 	
 	//maybe the should all be arrays
 	vector<Room *> vrooms;  //Should this be 2D?  or an array? nope
-	//vector<Region> regions;
-	//vector<Item> items;  //need a function to populate this
-	//vector<Critter> critters;
+	vector<Region *> vregions;
+	vector<Item *> items;  //need a function to populate this
+	vector<Critter *> vcritters;
 
-	Room *rooms;
-	Region *regions;
-	Item *weapons;
-	Critter *critters;
+	//Room *rooms;
+	//Region *regions;
+	//Item *weapons;
+	//Critter *critters;
 	
 };
 

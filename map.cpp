@@ -16,8 +16,19 @@ Map::Map(int size)
 	this->size = size;
 	//these three operations used to all happen here...
 	//needed some Functional Decomposition treatment!
-	critters = new Critter[MAX_CRITTERS];
-	weapons = new Item[MAX_ITEMS];
+	
+	//critters = new Critter[MAX_CRITTERS];
+	//weapons = new Item[MAX_ITEMS];
+
+	for (int i = 0; i < MAX_CRITTERS; ++i)
+	{
+		vcritters.push_back(new Critter());
+	}
+	
+	for (int i = 0; i < MAX_ITEMS; ++i)
+	{
+		items.push_back(new Item());
+	}
 
 	generateRegions();
 	generateRooms();
@@ -27,29 +38,29 @@ Map::Map(int size)
 
 void Map::generateRegions()
 {
-	/*
+	
 	for (int i = 0; i < REGION_COUNT; i++)
 	{
-		Region r(size);
-		regions.push_back(r);
+		vregions.push_back(new Region(size));
 	}
 
 	//add the default region last
-	regions.push_back(Region(size, true));
+	vregions.push_back(new Region(size, true));
 
 	//load strings from file
 	loadAllRegionData();
-	*/
-
+	
+	/*
 	regions = new Region[REGION_COUNT];
 
 	for (int i = 0; i < REGION_COUNT; ++i)
 	{
 		loadRegion(regions[i], i + 1);
 	}
+	*/
 }
 
-/* old vector version
+ //old vector version
 void Map::setExits()
 {
 	vector<Room *>::iterator rbeg = vrooms.begin();
@@ -65,8 +76,16 @@ void Map::setExits()
 			//4 directions
 			Point neighbor = (*currentRoom)->getLoc().Neighbor((Point::Direction)direction);
 
+			for (found = rbeg; found != rend; ++found)
+			{
+				if (**found == Room(neighbor))
+				{
+					break;
+				}
+			}
+
 			//this is a problem, because vrooms is now pointers
-			found = std::find(rbeg, rend, Room(neighbor));
+			//found = std::find(rbeg, rend, Room(neighbor));
 			if (found != rend)
 			{
 				(*currentRoom)->setExit(*found, (Point::Direction)direction);
@@ -80,8 +99,8 @@ void Map::setExits()
 		//currentRoom->lockExits();
 	}
 }
-*/
 
+/* new version that isn't so great after all
 void Map::setExits()
 {
 	int rcount = (size * size);
@@ -110,13 +129,14 @@ void Map::setExits()
 		//currentRoom->lockExits();
 	}
 }
+*/
 
 void Map::generateRooms()
 {
-	int aSize = (size * size) + 1;
-	rooms = new Room[aSize];
+	//int aSize = (size * size) + 1;
+	//rooms = new Room[aSize];
 
-	int rcount = 0;
+	//int rcount = 0;
 	//generate all the rooms
 	for (int y = 0; y < size; ++y)
 	{
@@ -126,10 +146,11 @@ void Map::generateRooms()
 			if ((rand() % OBSTACLE_FREQUENCY) != 1) //randomly don't add rooms.  The "empty" spots will become obstacles
 			{
 				Point p(x, y);
-				Room r(p);
-				rooms[rcount] = r;
-				vrooms.push_back(&rooms[rcount]);
-				++rcount;
+				//Room r(p);
+				//rooms[rcount] = r;
+				//vrooms.push_back(&rooms[rcount]);
+				//++rcount;
+				vrooms.push_back(new Room(p));
 			}
 		}
 	}
@@ -143,60 +164,71 @@ void Map::populateRooms()
 	Factory factory;
 	vector<Room *>::iterator rbeg = vrooms.begin();
 	vector<Room *>::iterator rend = vrooms.end();
+	auto witerator = items.begin();
+	auto wend = items.end();
+	auto criterator = vcritters.begin();
+	auto crend = vcritters.end();
 
 	for (auto currentRoom = rbeg; currentRoom != rend; ++currentRoom)
 	{
 		//all this needs to be done after r is added to the vector:
 
 		//randomly create and put a item (a weapon) in the room
-		if (rand() % WEAPON_FREQUENCY == 1 && windex != MAX_ITEMS - 1)
+		if (rand() % WEAPON_FREQUENCY == 1 && witerator != wend)
 		{
 			string name = factory.generateWeaponName();
-			weapons[windex].setAttribs(name);
+			//weapons[windex].setAttribs(name);
+			(*witerator)->setAttribs(name);
 			//Item i = factory.getWeapon();
 			//items.push_back(i);
-			(*currentRoom)->putItem(&weapons[windex]);
+			//(*currentRoom)->putItem(&weapons[windex]);
+			(*currentRoom)->putItem(*witerator);
 			//currentRoom->putItem(&i);
-			++windex;
+			//++windex;
+			++witerator;
 		}
 
 		//randomly create and put a critter in the room
-		if (rand() % CRITTER_FREQUENCY == 1 && cindex != MAX_CRITTERS - 1)
+		if (rand() % CRITTER_FREQUENCY == 1 && criterator != crend)
 		{
 			string name = factory.getCritterName();
-			critters[cindex].setDescription(name);
+			//critters[cindex].setDescription(name);
+			(*criterator)->setDescription(name);
 			//Critter c(this, &(*currentRoom), name);
 			//critters.push_back(c);
-			(*currentRoom)->enterCritter(&critters[cindex]);
+			//(*currentRoom)->enterCritter(&critters[cindex]);
+			(*currentRoom)->enterCritter(*criterator);
 			//currentRoom->enterCritter(&c);
-			++cindex;
+			//++cindex;
+			++criterator;
 		}
 
 		//determine & assign region here
 		for (int i = 0; i < REGION_COUNT; ++i)
 		{
 			Point p = (*currentRoom)->getLoc();
-			if (regions[i].isInside(p))
+			if ((*vregions[i]).isInside(p))
 			{
-				(*currentRoom)->setRegion(&regions[i]);
+				(*currentRoom)->setRegion(vregions[i]);
 				break;
 			}
 		}
 
+
 	}
 }
 
-/*This is obsolete
+
 void Map::loadAllRegionData()
 {
 	int rindex = 1;
-	for (vector<Region>::iterator curReg = regions.begin(); curReg != regions.end(); ++curReg)
+	for (auto curReg = vregions.begin(); curReg != vregions.end(); ++curReg)
 	{
-		loadRegion(*curReg, rindex);
+		loadRegion(**curReg, rindex);
 		rindex++;
 	}
 }
-*/
+
 
 //read the data file and load the region data
 void Map::loadRegion(Region &r, int index)
@@ -281,6 +313,7 @@ Room* Map::randomRoom()
 	return vrooms.at(randint);
 }
 
+/*
 Map::~Map()
 {
 	delete[] rooms;
@@ -288,3 +321,4 @@ Map::~Map()
 	delete[] weapons;
 	delete[] regions;
 }
+*/
