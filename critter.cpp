@@ -77,9 +77,11 @@ void Critter::takeDamage(int damage, Entity &source)  //maybe source isn't neede
 	}
 }
 
-void Critter::die(Entity &source)  //maybe source isn't needed?
+void Critter::die(const Entity &source)  //maybe source isn't needed?
 {
-	//teleport to graveyard and leave corpse struct behind
+	//teleport to graveyard and leave corpse struct behind?
+
+	description = "a dead body";
 }
 
 int Critter::attack()  //should this be renamed?

@@ -16,6 +16,7 @@ public:
 	string askPlayerName();
 	void showGreeting();
 	//bool processCommand();  //how is the command actually executed?  should this be in a different class?  It's in GameController
+	void message(string theMessage);
 private:
 	string promptText;
 	map<char, string> commands;  //maybe the value type should be direction enum?

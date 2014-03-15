@@ -91,3 +91,8 @@ char CmdPrompt::getCommand()  //only accepts valid commands from the player
 	} while (invalidInput);
 
 }
+
+void CmdPrompt::message(string msg)
+{
+
+}
