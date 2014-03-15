@@ -17,9 +17,9 @@ class Factory
 {
 public:
 	Factory();
-	string generateWeaponName();  //this could return a struct instead...
+	static string generateWeaponName();  //this could return a struct instead...
 	Item getWeapon();
-	string getCritterName();   //generate a random critter -- or just it's name
+	static string getCritterName();   //generate a random critter -- or just it's name
 
 	template<typename T>
 	T randElement(vector<T> source)

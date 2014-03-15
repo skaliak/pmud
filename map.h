@@ -38,7 +38,8 @@ protected:
 	void loadAllRegionData();
 
 	int size;
-	//Factory factory;
+	
+	//maybe the should all be arrays
 	vector<Room> rooms;  //Should this be 2D?  or an array? nope
 	vector<Region> regions;
 	vector<Item> items;  //need a function to populate this

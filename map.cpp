@@ -103,8 +103,8 @@ void Map::populateRooms()
 		{
 			Item i = factory.getWeapon();
 			items.push_back(i);
-			//r.putItem(&items.back());
-			currentRoom->putItem(&i);
+			currentRoom->putItem(&items.back());
+			//currentRoom->putItem(&i);
 		}
 
 		//randomly create and put a critter in the room
@@ -113,8 +113,8 @@ void Map::populateRooms()
 			string name = factory.getCritterName();
 			Critter c(this, &(*currentRoom), name);
 			critters.push_back(c);
-			//r.enterCritter(&critters.back());
-			currentRoom->enterCritter(&c);
+			currentRoom->enterCritter(&critters.back());
+			//currentRoom->enterCritter(&c);
 		}
 
 		//determine & assign region here
