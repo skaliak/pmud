@@ -10,14 +10,17 @@
 #include "critter.h"
 
 using std::string;
+using std::vector;
 
 class Item;
 class Critter;
+class Region;
 
 class Room : public Entity
 {
 public:
 	//constructor
+	Room(){}
 	Room(Point l) : loc(l), item(NULL), critter(NULL) {}
 
 	//setters
@@ -29,7 +32,7 @@ public:
 	void setS(Room *s) { S = s; }
 	void setExit(Room *r, Point::Direction dir);
 	void setRegion(Region *reg) { region = reg; }
-	void putItem(Item *i) { item = i; }
+	void putItem(Item *i);
 	bool enterCritter(Critter *c);  //return false if there's already a critter present
 
 	//getters

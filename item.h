@@ -5,19 +5,15 @@
 #include "entity.h"
 #include "room.h"
 
+using std::string;
+
 class Room;
 
 class Item : public Entity
 {
 public:
-	Item(){}
-	Item(string name, bool i = false, int w = 1) : Entity(name)
-	{
-		immobile = i;
-		weight = w;
-		location = NULL;
-		heldByPlayer = false;
-	}
+	Item();
+	//Item(string name, bool i = false, int w = 1);
 
 	//getters
 	bool isImmobile() { return immobile; }
@@ -26,6 +22,7 @@ public:
 
 	//setters
 	void setLocation(Room *r) { if (location == NULL) location = r; }
+	void setAttribs(string name, bool i = false, int w = 1, Room *loc = NULL);
 
 	//need a method to "take" or "pick up" the item?
 
@@ -34,6 +31,7 @@ protected:
 	int weight;
 	bool immobile;
 	bool heldByPlayer;
+	bool initialized;
 };
 
 #endif

@@ -16,6 +16,8 @@ Map::Map(int size)
 	this->size = size;
 	//these three operations used to all happen here...
 	//needed some Functional Decomposition treatment!
+	critters = new Critter[MAX_CRITTERS];
+	weapons = new Item[MAX_ITEMS];
 
 	generateRegions();
 	generateRooms();
@@ -25,6 +27,7 @@ Map::Map(int size)
 
 void Map::generateRegions()
 {
+	/*
 	for (int i = 0; i < REGION_COUNT; i++)
 	{
 		Region r(size);
@@ -36,31 +39,40 @@ void Map::generateRegions()
 
 	//load strings from file
 	loadAllRegionData();
+	*/
+
+	regions = new Region[REGION_COUNT];
+
+	for (int i = 0; i < REGION_COUNT; ++i)
+	{
+		loadRegion(regions[i], i + 1);
+	}
 }
 
 void Map::setExits()
 {
-	vector<Room>::iterator rbeg = rooms.begin();
-	vector<Room>::iterator rend = rooms.end();
-	vector<Room>::iterator found;
+	vector<Room *>::iterator rbeg = vrooms.begin();
+	vector<Room *>::iterator rend = vrooms.end();
+	vector<Room *>::iterator found;
 
 	//determine and set exits for all the rooms!
-	for (vector<Room>::iterator currentRoom = rbeg; currentRoom != rend; ++currentRoom)
+	for (vector<Room *>::iterator currentRoom = rbeg; currentRoom != rend; ++currentRoom)
 	{
 		//get list of neighbor points, find matching rooms with stl find, and assign pointer to nsew
 		for (int direction = 0; direction < 4; ++direction)
 		{
 			//4 directions
-			Point neighbor = currentRoom->getLoc().Neighbor((Point::Direction)direction);
+			Point neighbor = (*currentRoom)->getLoc().Neighbor((Point::Direction)direction);
+
+			//this is a problem, because vrooms is now pointers
 			found = std::find(rbeg, rend, Room(neighbor));
 			if (found != rend)
 			{
-				currentRoom->setExit(&(*found), (Point::Direction)direction);
+				(*currentRoom)->setExit(*found, (Point::Direction)direction);
 			}
 			else
 			{
-				//currentRoom->setExit(wall(), (Point::Direction)direction);
-				currentRoom->setExit(NULL, (Point::Direction)direction);
+				(*currentRoom)->setExit(NULL, (Point::Direction)direction);
 			}
 		}
 
@@ -68,9 +80,13 @@ void Map::setExits()
 	}
 }
 
+
 void Map::generateRooms()
 {
-	
+	int aSize = (size * size) + 1;
+	rooms = new Room[aSize];
+
+	int rcount = 0;
 	//generate all the rooms
 	for (int y = 0; y < size; ++y)
 	{
@@ -81,8 +97,9 @@ void Map::generateRooms()
 			{
 				Point p(x, y);
 				Room r(p);
-
-				rooms.push_back(r);
+				rooms[rcount] = r;
+				vrooms.push_back(&rooms[rcount]);
+				++rcount;
 			}
 		}
 	}
@@ -90,46 +107,56 @@ void Map::generateRooms()
 
 void Map::populateRooms()
 {
+	int aSize = (size * size) + 1;
+	int windex = 0;
+	int cindex = 0;
 	Factory factory;
-	vector<Room>::iterator rbeg = rooms.begin();
-	vector<Room>::iterator rend = rooms.end();
+	vector<Room *>::iterator rbeg = vrooms.begin();
+	vector<Room *>::iterator rend = vrooms.end();
 
 	for (auto currentRoom = rbeg; currentRoom != rend; ++currentRoom)
 	{
 		//all this needs to be done after r is added to the vector:
 
 		//randomly create and put a item (a weapon) in the room
-		if (rand() % WEAPON_FREQUENCY == 1)
+		if (rand() % WEAPON_FREQUENCY == 1 && windex != MAX_ITEMS - 1)
 		{
-			Item i = factory.getWeapon();
-			items.push_back(i);
-			currentRoom->putItem(&items.back());
+			string name = factory.generateWeaponName();
+			weapons[windex].setAttribs(name);
+			//Item i = factory.getWeapon();
+			//items.push_back(i);
+			(*currentRoom)->putItem(&weapons[windex]);
 			//currentRoom->putItem(&i);
+			++windex;
 		}
 
 		//randomly create and put a critter in the room
-		if (rand() % CRITTER_FREQUENCY == 1)
+		if (rand() % CRITTER_FREQUENCY == 1 && cindex != MAX_CRITTERS - 1)
 		{
 			string name = factory.getCritterName();
-			Critter c(this, &(*currentRoom), name);
-			critters.push_back(c);
-			currentRoom->enterCritter(&critters.back());
+			critters[cindex].setDescription(name);
+			//Critter c(this, &(*currentRoom), name);
+			//critters.push_back(c);
+			(*currentRoom)->enterCritter(&critters[cindex]);
 			//currentRoom->enterCritter(&c);
+			++cindex;
 		}
 
 		//determine & assign region here
-		for (vector<Region>::iterator curReg = regions.begin(); curReg != regions.end(); ++curReg)
+		for (int i = 0; i < REGION_COUNT; ++i)
 		{
-			Point p = currentRoom->getLoc();
-			if (curReg->isInside(p))
+			Point p = (*currentRoom)->getLoc();
+			if (regions[i].isInside(p))
 			{
-				currentRoom->setRegion(&(*curReg));
-				break;  //break because regions can overlap
+				(*currentRoom)->setRegion(&regions[i]);
+				break;
 			}
 		}
+
 	}
 }
 
+/*This is obsolete
 void Map::loadAllRegionData()
 {
 	int rindex = 1;
@@ -139,6 +166,7 @@ void Map::loadAllRegionData()
 		rindex++;
 	}
 }
+*/
 
 //read the data file and load the region data
 void Map::loadRegion(Region &r, int index)
@@ -218,7 +246,7 @@ void Map::loadRegion(Region &r, int index)
 Room* Map::randomRoom()
 {
 	//return a random room on the map, for the player starting position, etc.
-	int randint = rand() % rooms.size();
+	int randint = rand() % vrooms.size();
 
-	return &rooms.at(randint);
+	return vrooms.at(randint);
 }

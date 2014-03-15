@@ -5,14 +5,17 @@
 using std::string;
 using std::rand;
 
-Critter::Critter(Map *m, Room *startRoom, string name)
+
+
+Critter::Critter()
 {
-	map = m;
-	currentRoom = startRoom;
+	map = NULL;
+	currentRoom = NULL;
 	lastRoom = NULL;
-	description = name;
+	description = "";
 	strength = rand() % 20 + 5;
 	hitPoints = rand() % 50 + 20;
+	initialized = false;
 }
 
 bool Critter::move(Point::Direction dir)
@@ -30,8 +33,16 @@ bool Critter::move(Point::Direction dir)
 	return true;
 }
 
-
-
+void Critter::setAttribs(Map *m, Room *startRoom, string name)
+{
+	if (! initialized)
+	{
+		map = m;
+		currentRoom = startRoom;
+		description = name;
+		initialized = true;
+	}
+}
 
 
 /*

@@ -25,11 +25,7 @@ class Player : public Critter
 {
 public:
 	Player(){}  //probably should get rid of this
-	Player(Map *m, Room *startRoom, string name) : Critter(m, startRoom, name) 
-	{
-		strength = PLAYER_STR;
-		hitPoints = PLAYER_HP;
-	}
+	Player(Map *m, Room *startRoom, string name);
 
 	void showExits();  //this should get an array of room pointers or something?
 	void lookAround(); //gets the current room description and list of exits

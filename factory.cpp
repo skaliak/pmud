@@ -41,6 +41,7 @@ string Factory::generateWeaponName()
 	return weapon;
 }
 
+/* not worth the trouble
 Item Factory::getWeapon()
 {
 	Item weapon;
@@ -55,6 +56,7 @@ Item Factory::getWeapon()
 
 	return weapon;
 }
+*/
 
 string Factory::getCritterName()
 {

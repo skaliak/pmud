@@ -3,6 +3,7 @@
 
 #include "Point.h"
 #include "entity.h"
+#include "map.h"
 #include <vector>
 
 #define DATAFILE "env_data.txt"
@@ -14,11 +15,11 @@ using std::vector;
 class Region : public Entity
 {
 public:
-	Region();  //remove this one?
+	//Region();  //remove this one?
 	Region(Point tl, Point br) : topleft(tl), bottomright(br), envPhraseChance(4), dataNotLoaded(true) {}
 	Region(Point tl, int width, int height); 
 	//constructor that just takes size (i.e. map size), and generates a random region within that area
-	Region(int size, bool defaultRegion = false);
+	Region(int size = DEFAULT_MAP_SIZE, bool defaultRegion = false);
 
 	//is the point inside the region?  We need this to associate region pointers with rooms
 	bool isInside(const Point p);

@@ -156,3 +156,9 @@ bool Room::enterCritter(Critter *c)
 		return true;
 	}
 }
+
+void Room::putItem(Item *i) 
+{ 
+	item = i; 
+	i->setLocation(this); 
+}

@@ -3,15 +3,17 @@
 #include <iostream>
 #include "player.h"
 
-/* refactored to class Critter
+
 Player::Player(Map *m, Room *startRoom, std::string playername )
 {
 	map = m;
 	currentRoom = startRoom;
 	lastRoom = NULL;
 	description = playername;
+	strength = PLAYER_STR;
+	hitPoints = PLAYER_HP;
 }
-*/
+
 
 //gets the current room description and list of exits
 void Player::lookAround()
