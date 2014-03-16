@@ -4,7 +4,9 @@
 #include <string>
 #include <cstdlib>
 #include <sstream>
-//#include <unistd.h>
+#include <boost/thread/thread.hpp>
+
+#define BATTLE_DELAY 1500
 
 using std::string;
 using std::rand;
@@ -96,7 +98,10 @@ void Critter::battle(Critter &opponent)  //maybe should return a bool for live/d
 	//fight to the death!  Ideally there should be a retreat option...
 	while (stillAlive() && opponent.stillAlive())
 	{
-		//usleep(30000);
+		//slows down the messages to make the battle more interesting
+		//the next line won't compile on minGW
+		//std::this_thread::sleep_for(std::chrono::milliseconds(BATTLE_DELAY));
+		boost::this_thread::sleep( boost::posix_time::milliseconds(BATTLE_DELAY) );
 		myAttack = attack();  
 		theirAttack = opponent.attack();
 
