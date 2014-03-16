@@ -25,9 +25,10 @@ public:
 	void setAttribs(string name, bool i = false, int w = 1, Room *loc = NULL);
 
 	//need a method to "take" or "pick up" the item?
+	virtual void addEffects(Player *p){}   //base version does nothing?
 
 protected:
-	Room *location;  //is this necessary?  Only if we want to know where all items are, I guess
+	Entity *location;  //is this necessary?  Only if we want to know where all items are, I guess
 	int weight;
 	bool immobile;
 	bool heldByPlayer;

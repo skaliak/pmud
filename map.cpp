@@ -16,17 +16,14 @@ using std::cout;
 Map::Map(int size)
 {
 	this->size = size;
-	//these three operations used to all happen here...
-	//needed some Functional Decomposition treatment!
-	
-	//critters = new Critter[MAX_CRITTERS];
-	//weapons = new Item[MAX_ITEMS];
 
+	//fill the critter supply
 	for (int i = 0; i < MAX_CRITTERS; ++i)
 	{
 		vcritters.push_back(new Critter());
 	}
 	
+	//fill the items supply
 	for (int i = 0; i < MAX_ITEMS; ++i)
 	{
 		items.push_back(new Item());
@@ -54,15 +51,6 @@ void Map::generateRegions()
 
 	//load strings from file
 	loadAllRegionData();
-	
-	/*
-	regions = new Region[REGION_COUNT];
-
-	for (int i = 0; i < REGION_COUNT; ++i)
-	{
-		loadRegion(regions[i], i + 1);
-	}
-	*/
 }
 
  //old vector version
@@ -86,7 +74,8 @@ void Map::setExits()
 			//this is a problem, because vrooms is now pointers
 			//solution:  don't use find, compare manually!  
 			//found = std::find(rbeg, rend, Room(neighbor));
-			//this is sloooow
+			//this is sloooow -- it gets slower the higher the room number is
+			//a binary search would be better, but Room (and point) don't have < or >
 			for (found = rbeg; found != rend; ++found)
 			{
 				if (**found == Room(neighbor))
@@ -147,23 +136,21 @@ void Map::generateRooms()
 {
 	string msg = "\ngenerating rooms ";
 	cout << BLUE(msg);
+
+	//these lines are probably ok to delete
 	//int aSize = (size * size) + 1;
 	//rooms = new Room[aSize];
-
 	//int rcount = 0;
+
 	//generate all the rooms
 	for (int y = 0; y < size; ++y)
 	{
 		for (int x = 0; x < size; ++x)
 		{
-
-			if ((rand() % OBSTACLE_FREQUENCY) != 1) //randomly don't add rooms.  The "empty" spots will become obstacles
+			//randomly don't add rooms.  The "empty" spots will become obstacles
+			if ((rand() % OBSTACLE_FREQUENCY) != 1) 
 			{
 				Point p(x, y);
-				//Room r(p);
-				//rooms[rcount] = r;
-				//vrooms.push_back(&rooms[rcount]);
-				//++rcount;
 				vrooms.push_back(new Room(p));
 			}
 		}
@@ -174,12 +161,15 @@ void Map::populateRooms()
 {
 	string msg = "\npopulating rooms ";
 	cout << BLUE(msg);
-	int aSize = (size * size) + 1;
-	int windex = 0;
-	int cindex = 0;
+
+	//obsolete?
+	//int aSize = (size * size) + 1;
+	//int windex = 0;
+	//int cindex = 0;
+
 	Factory factory;
-	vector<Room *>::iterator rbeg = vrooms.begin();
-	vector<Room *>::iterator rend = vrooms.end();
+	auto rbeg = vrooms.begin();
+	auto rend = vrooms.end();
 	auto witerator = items.begin();
 	auto wend = items.end();
 	auto criterator = vcritters.begin();
@@ -187,49 +177,31 @@ void Map::populateRooms()
 
 	for (auto currentRoom = rbeg; currentRoom != rend; ++currentRoom)
 	{
-		//all this needs to be done after r is added to the vector:
-
 		//randomly create and put a item (a weapon) in the room
 		if (rand() % WEAPON_FREQUENCY == 1 && witerator != wend)
 		{
 			string name = factory.generateWeaponName();
-			//weapons[windex].setAttribs(name);
 			(*witerator)->setAttribs(name);
-			//Item i = factory.getWeapon();
-			//items.push_back(i);
-			//(*currentRoom)->putItem(&weapons[windex]);
 			(*currentRoom)->putItem(*witerator);
-			//currentRoom->putItem(&i);
-			//++windex;
 			++witerator;
+			if (witerator == wend)
+			{
+				throw("ERROR: ran out of items while populating rooms -- increase MAX_ITEMS");
+			}
 		}
 
 		//randomly create and put a critter in the room
 		if (rand() % CRITTER_FREQUENCY == 1 && criterator != crend)
 		{
 			string name = factory.getCritterName();
-			//critters[cindex].setDescription(name);
 			(*criterator)->setDescription(name);
-			//Critter c(this, &(*currentRoom), name);
-			//critters.push_back(c);
-			//(*currentRoom)->enterCritter(&critters[cindex]);
 			(*currentRoom)->enterCritter(*criterator);
-			//currentRoom->enterCritter(&c);
-			//++cindex;
 			++criterator;
-		}
-
-		/*//determine & assign region here
-		for (int i = 0; i < REGION_COUNT; ++i)
-		{
-			Point p = (*currentRoom)->getLoc();
-			if ((*vregions[i]).isInside(p))
+			if (criterator == crend)
 			{
-				(*currentRoom)->setRegion(vregions[i]);
-				break;
+				throw("ERROR: ran out of critters while populating rooms -- increase MAX_CRITTERS");
 			}
 		}
-		*/
 
 		for (auto it = vregions.begin(); it != vregions.end(); ++it)
 		{
@@ -347,9 +319,7 @@ Room* Map::randomRoom()
 	return vrooms.at(randint);
 }
 
-
-
-
+//de-struc-TOR!
 Map::~Map()
 {
 	cleanUp(vregions);

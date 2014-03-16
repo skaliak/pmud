@@ -35,7 +35,7 @@ string Room::getDescription(Room *r)
 	{
 		desc += "\n\nOn the ground is a weapon:  ";
 		desc += BMAGENTA( item->getDescription());
-		desc += "\n";
+		desc += "\n (press 't' to take it)\n";
 	}
 
 	if (critter != NULL && critter->getDescription() != "")

@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include "Point.h"
 #include <cmath>
-//#include <curses.h>
+#include "colors.h"
 
 using std::rand;
 using std::abs;
@@ -70,7 +70,6 @@ Point Point::randQuadP(int max, int quad)
 Point const Point::operator+(Point const& rhs)
 {
 	Point p;
-	//p.bound = (this->bound < rhs.bound) ? this->bound : rhs.bound;
 	p.x = this->x + rhs.x;
 	p.y = this->y + rhs.y;
 	return p;
@@ -79,7 +78,6 @@ Point const Point::operator+(Point const& rhs)
 Point const Point::operator-(Point const& rhs)
 {
 	Point p;
-	//p.bound = (this->bound < rhs.bound) ? this->bound : rhs.bound;
 	p.x = this->x - rhs.x;
 	p.y = this->y - rhs.y;
 	return p;
@@ -87,7 +85,8 @@ Point const Point::operator-(Point const& rhs)
 
 std::ostream &operator<<(std::ostream &out, Point p)
 {
-	out << p.x << "," << p.y << ":" << p.bound;
+	//it would be nice to colorize this, but it will be annoying
+	out << "(" << p.x << "," << p.y << ")";
 	return out;
 }
 

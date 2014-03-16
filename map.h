@@ -8,7 +8,7 @@
 #define WEAPON_FREQUENCY 12
 #define CRITTER_FREQUENCY 5
 #define MAX_ITEMS 200
-#define MAX_CRITTERS 400
+#define MAX_CRITTERS 550
 
 #include <vector>
 #include "room.h"

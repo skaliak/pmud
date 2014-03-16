@@ -24,7 +24,7 @@ CmdPrompt::CmdPrompt()
 	commands['q'] = "quit";
 	commands['h'] = "help";
 
-	showGreeting();
+	//showGreeting();  //moved to gameController
 }
 
 string CmdPrompt::askPlayerName()
@@ -53,10 +53,12 @@ string CmdPrompt::askPlayerName()
 
 }
 
+/*  Made a real version of this in gameController 
 void CmdPrompt::showGreeting()
 {
 	cout << "\n\nTHIS IS A PLACEHOLDER\ngame title/greeting goes here\n\n";
 }
+*/
 
 void CmdPrompt::showHelp()
 {
@@ -97,5 +99,5 @@ char CmdPrompt::getCommand()  //only accepts valid commands from the player
 
 void CmdPrompt::message(string msg)
 {
-
+	//what was this for?
 }

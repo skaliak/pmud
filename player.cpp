@@ -13,6 +13,7 @@ Player::Player(Map *m, Room *startRoom, std::string playername )
 	description = playername;
 	strength = PLAYER_STR;
 	hitPoints = PLAYER_HP;
+	hasGps = true;
 }
 
 
@@ -23,6 +24,12 @@ void Player::lookAround()
 	//get the description of the room, at least
 	std::string roomDesc = currentRoom->getDescription(lastRoom);
 	std::cout << "\n\n" << roomDesc << "\n\n";
+	if (hasGps)
+	{
+		std::cout << "Your GPS shows that your coordinates are: " <<
+			currentRoom->getLoc() << "\n";
+	}
+
 	std::cout << currentRoom->listExits() << "\n\n";
 	Critter *c = currentRoom->getCritter();
 	if (c != NULL)

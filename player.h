@@ -42,7 +42,7 @@ public:
 
 protected:
 	vector<Item *> inventory;
-	
+	bool hasGps;
 };
 
 #endif

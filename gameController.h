@@ -1,6 +1,9 @@
 #ifndef GAMECONTROLLER_H
 #define GAMECONTROLLER_H
 
+#define BANNER_FILE "banner.txt"
+
+#include <fstream>
 #include "cmdPrompt.h"
 #include "map.h"
 #include "player.h"
@@ -17,6 +20,8 @@ public:
 	GameController();  //there should be some setup here...
 	void Play();  //starts/plays the game
 	bool processCommand(char cmd); //returns true if quit was selected
+	void showGreeting();
+	void timedEvent(int i);	//make stuff happen even n'th turn
 private:
 	CmdPrompt cmdPrompt;
 	Map map;  //will there be constructor issues here?  Nope!  there's defaults

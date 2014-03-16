@@ -1,10 +1,13 @@
+#define BOOST_ENABLE 0
 #include "critter.h"
 #include "colors.h"
 #include "player.h"
 #include <string>
 #include <cstdlib>
 #include <sstream>
+#if BOOST_ENABLE
 #include <boost/thread/thread.hpp>
+#endif
 
 #define BATTLE_DELAY 1500
 
@@ -101,7 +104,9 @@ void Critter::battle(Critter &opponent)  //maybe should return a bool for live/d
 		//slows down the messages to make the battle more interesting
 		//the next line won't compile on minGW
 		//std::this_thread::sleep_for(std::chrono::milliseconds(BATTLE_DELAY));
+		#if BOOST_ENABLE
 		boost::this_thread::sleep( boost::posix_time::milliseconds(BATTLE_DELAY) );
+		#endif
 		myAttack = attack();  
 		theirAttack = opponent.attack();
 

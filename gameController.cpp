@@ -1,14 +1,20 @@
 #include "gameController.h"
 
+using std::fstream;
+
 GameController::GameController()
 {
 	//set up the player
 	//if we get setup data for player (e.g. name) should cmdPrompt be used for input validation?
 
+	showGreeting();
+
 	string name = "John Doe";
 	name = cmdPrompt.askPlayerName();
 
 	player = Player(&map, map.randomRoom(), name);   //passing reference to map could be a problem, since it's private...
+
+	//here's where we want to make the GPS appear on the ground by the player...
 }
 
 
@@ -16,26 +22,28 @@ void GameController::Play()
 {
 	/*
 		This should:
-		i. show some kind of intro?
-		ii. greet player by name?
-		1. get commands from player  (n, s, e, w, l)
-		2. process commands (move in [dir] or get descriptions)
-		3. repeat
+		i. show some kind of intro? -- that happens in the ctor 
+		ii. greet player by name? - yep
+		1. get commands from player  (n, s, e, w, l) - yep
+		2. process commands (move in [dir] or get descriptions) - yep
+		3. repeat - yep
 		4. allow for an exit condition yep
-	
 	*/
 
 	bool quit = false;
+	int turnCounter = 0;
 
 	//initial look around
 	player.lookAround();
 
 	while (! quit)
 	{
+		//mechanism for timed events
+		timedEvent(++turnCounter);
+	
 		char cmd = cmdPrompt.getCommand();
 
 		quit = processCommand(cmd);  //returns true if quit was selected
-
 	}
 }
 
@@ -77,5 +85,37 @@ bool GameController::processCommand(char c)
 		return false;  //show help if all else fails
 	}
 
+
+}
+
+void GameController::showGreeting()
+{
+	fstream fin(BANNER_FILE, fstream::in);
+	string banner, line;
+
+	banner = "\n\n";
+
+	while (!fin.eof())
+	{
+		getline(fin, line);
+		banner += line + "\n";
+	}
+	fin.close();
+
+	std::cout << banner << "\n\n\n";
+}
+
+void timedEvent(int i)
+{
+	int n = 10;
+	if (i % n == 0)
+	{
+		//something happens every n turns
+	}
+
+	if (i == 5)
+	{
+		//make something happen once on turn 5
+	}
 
 }
