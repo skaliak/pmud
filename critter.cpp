@@ -3,11 +3,12 @@
 #include "player.h"
 #include <string>
 #include <cstdlib>
+#include <sstream>
+//#include <unistd.h>
 
 using std::string;
 using std::rand;
 using std::cout;
-using std::to_string;
 
 Critter::Critter()
 {
@@ -69,7 +70,7 @@ overrides for the player class... so maybe it would be easier to have them here?
 void Critter::provoke(Critter *c)
 {
 	//c is probably the player, but it probably really matter.
-	if (willAttack)
+	if (willAttack && stillAlive())
 	{
 		battle(*c);
 	}
@@ -95,15 +96,17 @@ void Critter::battle(Critter &opponent)  //maybe should return a bool for live/d
 	//fight to the death!  Ideally there should be a retreat option...
 	while (stillAlive() && opponent.stillAlive())
 	{
+		//usleep(30000);
 		myAttack = attack();  
 		theirAttack = opponent.attack();
 
+		battle_message = description + " hits for " + tos(myAttack) + " damage\n";
+		cout << BCYAN(battle_message);
+		battle_message = oPronoun + " hits for " + tos(theirAttack) + " damage\n\n";
+		cout << BGREEN(battle_message);
+
 		takeDamage(theirAttack, opponent);
 		opponent.takeDamage(myAttack, *this);
-		battle_message = description + " hits for " + to_string((long double)myAttack) + " damage\n";
-		cout << BCYAN(battle_message);
-		battle_message = oPronoun + " hits for " + to_string((long double)theirAttack) + " damage\n";
-		cout << BGREEN(battle_message);
 	}
 
 	//need to know who won?
@@ -121,9 +124,11 @@ void Critter::takeDamage(int damage, Entity &source)  //maybe source isn't neede
 
 void Critter::die(const Entity &source)  //maybe source isn't needed?
 {
+	strength = 0;
+	passiveness = 11;
+	willAttack = false;
 	//teleport to graveyard and leave corpse struct behind?
-	string deathmessage = description;
-	deathmessage += " is dead!";
+	string deathmessage = "\n" + description + " is dead!\n\n";
 	cout << BRED(deathmessage);
 
 	description = "a dead body";
@@ -132,4 +137,13 @@ void Critter::die(const Entity &source)  //maybe source isn't needed?
 int Critter::attack()  //should this be renamed?
 {
 	return rand() % strength;
+}
+
+string Critter::tos(int i)
+{
+	string s;
+	std::stringstream ss;
+	ss << i;
+	ss >> s;
+	return s;
 }

@@ -30,7 +30,7 @@ public:
 	void setAttribs(Map *m, Room *startRoom, string name);
 	bool stillAlive() { return (hitPoints > 0); }
 	void provoke(Critter *c);   //see if the critter wants to fight
-
+	string tos(int i);
 	int attack();  //returns a random int from 0 to strength
 
 	virtual void takeDamage(int damage, Entity &source); //take damage

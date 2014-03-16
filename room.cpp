@@ -1,6 +1,7 @@
 
 #include "room.h"
 #include "Point.h"
+#include "colors.h"
 #include <vector>
 
 using std::string;
@@ -33,15 +34,15 @@ string Room::getDescription(Room *r)
 	if (item != NULL && item->getDescription() != "")
 	{
 		desc += "\n\nOn the ground is a weapon:  ";
-		desc += item->getDescription();
+		desc += BMAGENTA( item->getDescription());
 		desc += "\n";
 	}
 
 	if (critter != NULL && critter->getDescription() != "")
 	{
 		desc += "\n\nThere is a creature here!\n";
-		desc += critter->getDescription();
-		desc += "\n";
+		desc += RED(critter->getDescription());
+		desc += "\n (press 'f' to fight it)\n";
 	}
 
 	return desc;
@@ -166,5 +167,8 @@ bool Room::enterCritter(Critter *c)
 void Room::putItem(Item *i) 
 { 
 	item = i; 
-	i->setLocation(this); 
+	if (i != NULL)
+	{
+		i->setLocation(this);
+	}
 }

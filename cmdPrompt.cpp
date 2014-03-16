@@ -18,7 +18,9 @@ CmdPrompt::CmdPrompt()
 	commands['e'] = "east";
 	commands['w'] = "west";
 	commands['l'] = "look around";
-	commands['f'] = "fight creature (if present)";
+	commands['f'] = "fight creature";
+	commands['t'] = "take item";
+	commands['i'] = "inventory";
 	commands['q'] = "quit";
 	commands['h'] = "help";
 

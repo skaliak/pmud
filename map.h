@@ -5,10 +5,10 @@
 //higher = more frequent
 #define OBSTACLE_FREQUENCY 8 
 #define REGION_COUNT 3
-#define WEAPON_FREQUENCY 6
-#define CRITTER_FREQUENCY 12
-#define MAX_ITEMS 300
-#define MAX_CRITTERS 200
+#define WEAPON_FREQUENCY 12
+#define CRITTER_FREQUENCY 5
+#define MAX_ITEMS 200
+#define MAX_CRITTERS 400
 
 #include <vector>
 #include "room.h"

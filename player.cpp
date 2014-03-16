@@ -4,7 +4,6 @@
 #include "player.h"
 #include "colors.h"
 
-using std::to_string;
 
 Player::Player(Map *m, Room *startRoom, std::string playername )
 {
@@ -52,7 +51,7 @@ void Player::takeDamage(int damage, Entity &source)
 {
 	Critter::takeDamage(damage, source);
 
-	string msg = "\nyou have " + to_string((long double)hitPoints) + " hitpoints left\n";
+	string msg = "\nyou have " + tos(hitPoints) + " hitpoints left\n";
 	std::cout << RED(msg);
 
 	if (hitPoints < 10)
@@ -64,9 +63,11 @@ void Player::takeDamage(int damage, Entity &source)
 
 void Player::die(const Entity &source)
 {
-	std::cout << "\n\nOh no!  You were killed by "
-		<< source.getDescription() << "\n\n"
-		<< "GAME OVER\n\n";
+	string msg = "\n\nOh no!  You were killed by " +
+		source.getDescription() + "\n\n";
+	std::cout << BYELLOW(msg);
+	msg = "GAME OVER\n\n";
+	std::cout << BRED(msg);
 
 	exit(0);
 	//game over?
@@ -75,7 +76,7 @@ void Player::die(const Entity &source)
 void Player::fightCritter()
 {
 	Critter *c = currentRoom->getCritter();
-	if (c != NULL)
+	if (c != NULL && c->stillAlive())
 	{
 		battle(*c);
 	}
@@ -85,4 +86,30 @@ void Player::fightCritter()
 
 	}
 
+}
+
+void Player::showInventory()
+{
+	std::cout << "\nYour inventory: \n";
+	for (auto it = inventory.begin(); it != inventory.end(); ++it)
+	{
+		std::cout << BMAGENTA((*it)->getDescription()) << "\n";
+	}
+}
+
+void Player::takeItem()
+{
+	Item *i = currentRoom->getItem();
+	if (i != NULL)
+	{
+		string idesc = i->getDescription();
+		std::cout << "\nYou add " << BMAGENTA(idesc) <<
+			" to your inventory.\n(press 'i' to show inventory)\n\n";
+		inventory.push_back(i);
+		currentRoom->putItem(NULL);
+	}
+	else
+	{
+		std::cout << "\nThere's nothing here to take!\n";
+	}
 }

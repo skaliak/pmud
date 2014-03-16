@@ -59,7 +59,13 @@ bool GameController::processCommand(char c)
 		player.move(Point::WEST);
 		return false;
 	case 'f':
-		//player.;
+		player.fightCritter();
+		return false;
+	case 't':
+		player.takeItem();
+		return false;
+	case 'i':
+		player.showInventory();
 		return false;
 	case 'q':
 		return true;
