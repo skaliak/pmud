@@ -1,4 +1,5 @@
 #include "map.h"
+#include "colors.h"
 #include <vector>
 #include <algorithm>
 #include <fstream>
@@ -10,6 +11,7 @@ using std::vector;
 using std::size_t;
 using std::string;
 using std::rand;
+using std::cout;
 
 Map::Map(int size)
 {
@@ -34,11 +36,13 @@ Map::Map(int size)
 	generateRooms();
 	populateRooms();
 	setExits();
+
+	cout << "\n\n\n";
 }
 
 void Map::generateRegions()
 {
-	
+	cout << BLUE("\nloading regions ");
 	for (int i = 0; i < REGION_COUNT; i++)
 	{
 		vregions.push_back(new Region(size));
@@ -63,10 +67,11 @@ void Map::generateRegions()
  //old vector version
 void Map::setExits()
 {
+	cout << BLUE("\nsetting room exits");
 	vector<Room *>::iterator rbeg = vrooms.begin();
 	vector<Room *>::iterator rend = vrooms.end();
 	vector<Room *>::iterator found;
-
+	int dotcounter = 0;
 	//determine and set exits for all the rooms!
 	for (vector<Room *>::iterator currentRoom = rbeg; currentRoom != rend; ++currentRoom)
 	{
@@ -79,6 +84,7 @@ void Map::setExits()
 			//this is a problem, because vrooms is now pointers
 			//solution:  don't use find, compare manually!  
 			//found = std::find(rbeg, rend, Room(neighbor));
+			//this is sloooow
 			for (found = rbeg; found != rend; ++found)
 			{
 				if (**found == Room(neighbor))
@@ -97,6 +103,9 @@ void Map::setExits()
 			}
 		}
 
+		if(dotcounter % 100 == 0) cout << ".";
+
+		++dotcounter;
 		//currentRoom->lockExits();  //see if this works now
 	}
 }
@@ -134,6 +143,7 @@ void Map::setExits()
 
 void Map::generateRooms()
 {
+	cout << BLUE("\ngenerating rooms ");
 	//int aSize = (size * size) + 1;
 	//rooms = new Room[aSize];
 
@@ -159,6 +169,7 @@ void Map::generateRooms()
 
 void Map::populateRooms()
 {
+	cout << BLUE("\npopulating rooms ");
 	int aSize = (size * size) + 1;
 	int windex = 0;
 	int cindex = 0;
@@ -204,7 +215,7 @@ void Map::populateRooms()
 			++criterator;
 		}
 
-		//determine & assign region here
+		/*//determine & assign region here
 		for (int i = 0; i < REGION_COUNT; ++i)
 		{
 			Point p = (*currentRoom)->getLoc();
@@ -214,14 +225,29 @@ void Map::populateRooms()
 				break;
 			}
 		}
+		*/
 
+		for (auto it = vregions.begin(); it != vregions.end(); ++it)
+		{
+			Point p = (*currentRoom)->getLoc();
+			if ((*it)->isInside(p))
+			{
+				(*currentRoom)->setRegion(*it);
+				break;
+			}
+		}
 
+		if ((*currentRoom)->getRegion() == NULL)
+		{
+			throw("error! region not set!");
+		}
 	}
 }
 
 
 void Map::loadAllRegionData()
 {
+	cout << BLUE("\nloading region strings from file ");
 	int rindex = 1;
 	for (auto curReg = vregions.begin(); curReg != vregions.end(); ++curReg)
 	{

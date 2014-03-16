@@ -15,7 +15,7 @@ public:
 	//Entity(Entity& other) { throw("Copy constructor called on Entity! Didn't pass by reference!"); }
 
 	//getters
-	virtual std::string getDescription() { return description; }
+	virtual std::string getDescription() const { return description; }
 
 	//should only be allowed if description is ""
 	virtual void setDescription(std::string desc) { if (description == "") description = desc; }

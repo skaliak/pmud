@@ -18,10 +18,16 @@ Player::Player(Map *m, Room *startRoom, std::string playername )
 //gets the current room description and list of exits
 void Player::lookAround()
 {
+
 	//get the description of the room, at least
 	std::string roomDesc = currentRoom->getDescription(lastRoom);
 	std::cout << "\n\n" << roomDesc << "\n\n";
 	std::cout << currentRoom->listExits() << "\n\n";
+	Critter *c = currentRoom->getCritter();
+	if (c != NULL)
+	{
+		c->provoke(this);
+	}
 }
 
 //moves the player in this direction
@@ -42,5 +48,10 @@ bool Player::move(Point::Direction dir)
 
 void Player::die(const Entity &source)
 {
+	std::cout << "\n\nOh no!  You were killed by "
+		<< source.getDescription() << "\n\n"
+		<< "GAME OVER\n\n";
 
+	exit(0);
+	//game over?
 }

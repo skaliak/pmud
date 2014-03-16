@@ -41,6 +41,8 @@ public:
 	string listExits();
 	string getDescription(Room *r);   //overload (or override?) of parent:  if r is a different env, get env desc
 	Item *getItem() { return item; }
+	Critter *getCritter() { return critter; }
+	Region *getRegion() { return region; }
 
 	//operators
 	bool operator==(Room const& rhs) { return (loc == rhs.loc); }

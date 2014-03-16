@@ -15,7 +15,20 @@ Critter::Critter()
 	description = "";
 	strength = rand() % 20 + 5;
 	hitPoints = rand() % 50 + 20;
+	passiveness = rand() % 10;
 	initialized = false;
+	willAttack = false;
+}
+
+string Critter::getDescription(Critter *c)
+{
+	string desc = Entity::getDescription();
+	if (rand() % passiveness == 1)
+	{
+		//set willAttack so when provoke is called, it will attack
+		willAttack = true;
+	}
+	return desc;
 }
 
 bool Critter::move(Point::Direction dir)
@@ -50,6 +63,15 @@ The below functions are all for battling.  The NPC obviously isn't going to read
 for the base version, messages aren't necessary, otoh, those messages would have to come from
 overrides for the player class... so maybe it would be easier to have them here?
 */
+
+void Critter::provoke(Critter *c)
+{
+	//c is probably the player, but it probably really matter.
+	if (willAttack)
+	{
+		battle(*c);
+	}
+}
 
 void Critter::battle(Critter &opponent)  //maybe should return a bool for live/die?
 {

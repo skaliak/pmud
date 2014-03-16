@@ -32,7 +32,7 @@ string Room::getDescription(Room *r)
 	//if there's an item, add it's description
 	if (item != NULL && item->getDescription() != "")
 	{
-		desc += "\nOn the ground is\n";
+		desc += "\n\nOn the ground is a weapon:  ";
 		desc += item->getDescription();
 		desc += "\n";
 	}
