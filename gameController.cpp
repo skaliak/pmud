@@ -58,6 +58,9 @@ bool GameController::processCommand(char c)
 	case 'w':
 		player.move(Point::WEST);
 		return false;
+	case 'f':
+		//player.;
+		return false;
 	case 'q':
 		return true;
 	case 'h':

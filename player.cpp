@@ -2,7 +2,9 @@
 #include <string>
 #include <iostream>
 #include "player.h"
+#include "colors.h"
 
+using std::to_string;
 
 Player::Player(Map *m, Room *startRoom, std::string playername )
 {
@@ -46,6 +48,20 @@ bool Player::move(Point::Direction dir)
 	return result;
 }
 
+void Player::takeDamage(int damage, Entity &source)
+{
+	Critter::takeDamage(damage, source);
+
+	string msg = "\nyou have " + to_string(hitPoints) + " hitpoints left\n";
+	std::cout << RED(msg);
+
+	if (hitPoints < 10)
+	{
+		msg = "\nyou are almost dead!\n";
+		std::cout << BYELLOW(msg);
+	}
+}
+
 void Player::die(const Entity &source)
 {
 	std::cout << "\n\nOh no!  You were killed by "
@@ -54,4 +70,19 @@ void Player::die(const Entity &source)
 
 	exit(0);
 	//game over?
+}
+
+void Player::fightCritter()
+{
+	Critter *c = currentRoom->getCritter();
+	if (c != NULL)
+	{
+		battle(*c);
+	}
+	else
+	{
+		std::cout << "\nnothing here to fight!\n";
+
+	}
+
 }

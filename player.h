@@ -31,9 +31,11 @@ public:
 	void lookAround(); //gets the current room description and list of exits
 	bool move(Point::Direction dir);  //moves the player in this direction
 
+	void fightCritter();
 	//virtual from parent:
 	//void takeDamage(int damage, Entity source); //override from parent... is it needed?
 	void die(const Entity &source);   //definitely need to override this.
+	void takeDamage(int damage, Entity &source);
 
 protected:
 	vector<Item *> inventory;

@@ -42,7 +42,8 @@ Map::Map(int size)
 
 void Map::generateRegions()
 {
-	cout << BLUE("\nloading regions ");
+	string msg = "\nloading regions ";
+	cout << BLUE(msg);
 	for (int i = 0; i < REGION_COUNT; i++)
 	{
 		vregions.push_back(new Region(size));
@@ -67,7 +68,8 @@ void Map::generateRegions()
  //old vector version
 void Map::setExits()
 {
-	cout << BLUE("\nsetting room exits");
+	string msg = "\nsetting room exits";
+	cout << BLUE(msg);
 	vector<Room *>::iterator rbeg = vrooms.begin();
 	vector<Room *>::iterator rend = vrooms.end();
 	vector<Room *>::iterator found;
@@ -143,7 +145,8 @@ void Map::setExits()
 
 void Map::generateRooms()
 {
-	cout << BLUE("\ngenerating rooms ");
+	string msg = "\ngenerating rooms ";
+	cout << BLUE(msg);
 	//int aSize = (size * size) + 1;
 	//rooms = new Room[aSize];
 
@@ -169,7 +172,8 @@ void Map::generateRooms()
 
 void Map::populateRooms()
 {
-	cout << BLUE("\npopulating rooms ");
+	string msg = "\npopulating rooms ";
+	cout << BLUE(msg);
 	int aSize = (size * size) + 1;
 	int windex = 0;
 	int cindex = 0;
@@ -247,7 +251,8 @@ void Map::populateRooms()
 
 void Map::loadAllRegionData()
 {
-	cout << BLUE("\nloading region strings from file ");
+	string msg = "\nloading region strings from file ";
+	cout << BLUE(msg);
 	int rindex = 1;
 	for (auto curReg = vregions.begin(); curReg != vregions.end(); ++curReg)
 	{
