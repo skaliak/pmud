@@ -52,7 +52,7 @@ void Player::takeDamage(int damage, Entity &source)
 {
 	Critter::takeDamage(damage, source);
 
-	string msg = "\nyou have " + to_string(hitPoints) + " hitpoints left\n";
+	string msg = "\nyou have " + to_string((long double)hitPoints) + " hitpoints left\n";
 	std::cout << RED(msg);
 
 	if (hitPoints < 10)

@@ -100,9 +100,9 @@ void Critter::battle(Critter &opponent)  //maybe should return a bool for live/d
 
 		takeDamage(theirAttack, opponent);
 		opponent.takeDamage(myAttack, *this);
-		battle_message = description + " hits for " + to_string(myAttack) + " damage\n";
+		battle_message = description + " hits for " + to_string((long double)myAttack) + " damage\n";
 		cout << BCYAN(battle_message);
-		battle_message = oPronoun + " hits for " + to_string(theirAttack) + " damage\n";
+		battle_message = oPronoun + " hits for " + to_string((long double)theirAttack) + " damage\n";
 		cout << BGREEN(battle_message);
 	}
 
