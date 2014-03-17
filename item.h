@@ -1,3 +1,8 @@
+/*
+Peter Lindberg
+CS165 w2014
+Final Project
+*/
 #ifndef ITEM_H
 #define ITEM_H
 

@@ -1,3 +1,8 @@
+/*
+Peter Lindberg
+CS165 w2014
+Final Project
+*/
 #ifndef MAP_H
 #define MAP_H
 

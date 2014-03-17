@@ -1,3 +1,8 @@
+/*
+Peter Lindberg
+CS165 w2014
+Final Project
+*/
 #ifndef CMDPROMPT_H
 #define CMDPROMPT_H
 

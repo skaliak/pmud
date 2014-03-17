@@ -1,3 +1,8 @@
+/*
+Peter Lindberg
+CS165 w2014
+Final Project
+*/
 #include "factory.h"
 #include "room.h"
 #include "item.h"

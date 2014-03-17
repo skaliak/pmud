@@ -1,3 +1,8 @@
+/*
+Peter Lindberg
+CS165 w2014
+Final Project
+*/
 #define BOOST_ENABLE 0
 #include "critter.h"
 #include "colors.h"

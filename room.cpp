@@ -1,4 +1,8 @@
-
+/*
+Peter Lindberg
+CS165 w2014
+Final Project
+*/
 #include "room.h"
 #include "Point.h"
 #include "colors.h"

@@ -1,6 +1,7 @@
 /*
-	Should player have any "attributes"?
-	e.g. hit points, name, etc?  using Entity.description for name
+	Peter Lindberg
+	CS165 w2014
+	Final Project
 */
 
 

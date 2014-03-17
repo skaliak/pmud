@@ -1,3 +1,8 @@
+/*
+Peter Lindberg
+CS165 w2014
+Final Project
+*/
 #ifndef FACTORY_H
 #define FACTORY_H
 

@@ -1,3 +1,8 @@
+/*
+Peter Lindberg
+CS165 w2014
+Final Project
+*/
 #ifndef GAMECONTROLLER_H
 #define GAMECONTROLLER_H
 

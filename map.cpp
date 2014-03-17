@@ -1,3 +1,8 @@
+/*
+Peter Lindberg
+CS165 w2014
+Final Project
+*/
 #include "map.h"
 #include "colors.h"
 #include <vector>
