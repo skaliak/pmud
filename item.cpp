@@ -2,7 +2,6 @@
 #include "factory.h"
 
 
-
 Item::Item()
 {
 	description = "";
@@ -11,6 +10,7 @@ Item::Item()
 	location = NULL;
 	heldByPlayer = false;
 	initialized = false;
+	effectsFlags = 0;
 }
 
 void Item::setAttribs(string name, bool i, int w, Room *loc)

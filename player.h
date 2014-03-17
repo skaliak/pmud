@@ -27,6 +27,8 @@ public:
 	Player(){}  //probably should get rid of this
 	Player(Map *m, Room *startRoom, string name);
 
+	friend class GameController;
+
 	void showExits();  //this should get an array of room pointers or something?
 	void lookAround(); //gets the current room description and list of exits
 	void showInventory();
@@ -42,6 +44,7 @@ public:
 
 protected:
 	vector<Item *> inventory;
+	void addEffectsFromItem(Item *i);
 	bool hasGps;
 };
 

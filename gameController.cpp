@@ -38,8 +38,9 @@ void GameController::Play()
 
 	while (! quit)
 	{
+		std::cout << turnCounter << "\n";
 		//mechanism for timed events
-		timedEvent(++turnCounter);
+		timedEvent(turnCounter++);
 	
 		char cmd = cmdPrompt.getCommand();
 
@@ -113,9 +114,22 @@ void GameController::timedEvent(int i)
 		//something happens every n turns
 	}
 
-	if (i == 5)
+	if (i == 2)
 	{
-		//make something happen once on turn 5
+		//make something happen once on turn 3
+		//this ideally should happen after the move, but before the lookaround
+		//make a GPS appear in the player's room so he/she can pick it up
+		if (player.currentRoom->getItem() != NULL)
+		{
+			player.currentRoom->getItem()->makeGps();
+			player.lookAround();
+		}
+		else
+		{
+			player.currentRoom->putItem(new Item());
+			player.currentRoom->getItem()->makeGps();
+			player.lookAround();
+		}
 	}
 
 }

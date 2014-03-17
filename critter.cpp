@@ -23,7 +23,7 @@ Critter::Critter()
 	description = "";
 	strength = rand() % 20 + 5;
 	hitPoints = rand() % 50 + 20;
-	passiveness = rand() % 10;
+	passiveness = rand() % 9 + 1;
 	initialized = false;
 	willAttack = false;
 }

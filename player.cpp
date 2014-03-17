@@ -13,7 +13,7 @@ Player::Player(Map *m, Room *startRoom, std::string playername )
 	description = playername;
 	strength = PLAYER_STR;
 	hitPoints = PLAYER_HP;
-	hasGps = true;
+	hasGps = false;
 }
 
 
@@ -114,9 +114,21 @@ void Player::takeItem()
 			" to your inventory.\n(press 'i' to show inventory)\n\n";
 		inventory.push_back(i);
 		currentRoom->putItem(NULL);
+		addEffectsFromItem(i);
 	}
 	else
 	{
 		std::cout << "\nThere's nothing here to take!\n";
+	}
+}
+
+void Player::addEffectsFromItem(Item *i)
+{
+	unsigned char bitmask = i->getEffectsFlags();
+
+	//check if the GPS flag is set with AND
+	if ((bitmask & GPS_FLAG) == GPS_FLAG)
+	{
+		hasGps = true;
 	}
 }

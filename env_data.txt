@@ -2,10 +2,12 @@ $The Village
 You are in a village.  It is a town of wide extent and dense construction, yet one with a portentous dearth of visible life.
 From the tangle of chimney-pots scarcely a wisp of smoke came, and the three tall steeples loomed stark and unpainted against
 the horizon. One of them is crumbling down at the top, and in that and another there are only black gaping holes where
-clock-dials should be. The vast huddle of sagging gambrel roofs and peaked gables conveys with offensive clearness the idea
+clock-dials should be. 
+The vast huddle of sagging gambrel roofs and peaked gables conveys with offensive clearness the idea
 of wormy decay, and you can see that many roofs have wholly caved in. There are some large square Georgian houses, too,
 with hipped roofs, cupolas, and railed "widow's walks." These are mostly well back from the road, and one or two seem
-to be in moderately sound condition. Stretching away from among them you see the rusted, grass-grown line of an abandoned
+to be in moderately sound condition. 
+Stretching away from among them you see the rusted, grass-grown line of an abandoned
 railway, with leaning telegraph-poles now devoid of wires, and the half-obscured lines of the old carriage roads.
 @
 You smell something vaguely fishy.
@@ -20,18 +22,19 @@ what appears to be a sinkhole, with no visible bottom.
 a house.
 a ditch or small canal, partly filled with brackish water.
 @
-$The Void
-You are somewhere else.  You try to describe this place to yourself,
-but the only thing you can think of is [PLACEHOLDER DESCRIPTION].
+$Binary City
+10110011010110001101001110010011
+11000110111101100011000000111111
+10111000111111010010110011011111
+11001000011111011001000011110100
 @
-Something happens.
-You pause for a moment, thinking something interesting might happen, but it doesn't.
-You wonder if you'll ever make it to somewhere more interesting.
-And then...
+Not too far away you witness a crime take place:  An innocent 4 has been right shifted 1 by some bully, and now he's just a 2.
+You notice that the building numbers on opposite sides of the street are two's complements of each other, e.g. 0110 is across from 1010.
+A man walks by with a T-shirt that reads "There are only 10 types of people in the world, those that understand binary and those that don't".
 @
-an obstacle.
-an invisible wall.
-a dark void.
+a guard wielding a fearsome weapon:  an "& 0".
+101010
+a dark expanse of nothingness.
 a huge black monolith.
 @
 $The Desert
