@@ -62,9 +62,18 @@ int main()
 		GameController gc;
 		gc.Play();
 	}
-	catch (string e)
+	catch (int i)
 	{
-		std::cout << e << "\n\n";
+		if (i == 1)
+		{
+			std::cout << "ERROR: ran out of items while populating rooms -- increase MAX_ITEMS";
+		}
+		if (i == 2)
+		{
+			std::cout << "ERROR: ran out of critters while populating rooms -- increase MAX_CRITTERS";
+		}
+		else
+			std::cout << "caught an unknown exception, probably during game setup";
 	}
 
 	

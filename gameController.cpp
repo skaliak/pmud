@@ -38,7 +38,7 @@ void GameController::Play()
 
 	while (! quit)
 	{
-		std::cout << turnCounter << "\n";
+		//std::cout << turnCounter << "\n";
 		//mechanism for timed events
 		timedEvent(turnCounter++);
 	

@@ -101,36 +101,6 @@ void Map::setExits()
 	}
 }
 
-/* new version that isn't so great after all
-void Map::setExits()
-{
-	int rcount = (size * size);
-
-	//determine and set exits for all the rooms!
-	for (int i = 0; i < rcount; ++i)
-	{
-		//get list of neighbor points, find matching rooms with stl find, and assign pointer to nsew
-		for (int direction = 0; direction < 4; ++direction)
-		{
-			//4 directions
-			Point neighbor = rooms[i].getLoc().Neighbor((Point::Direction)direction);
-
-			//this is a problem, because vrooms is now pointers
-			Room *found = std::find(rooms, rooms + rcount -1, Room(neighbor));
-			if (found != rooms + rcount)
-			{
-				rooms[i].setExit(found, (Point::Direction)direction);
-			}
-			else
-			{
-				rooms[i].setExit(NULL, (Point::Direction)direction);
-			}
-		}
-
-		//currentRoom->lockExits();
-	}
-}
-*/
 
 void Map::generateRooms()
 {
@@ -176,7 +146,7 @@ void Map::populateRooms()
 			++witerator;
 			if (witerator == wend)
 			{
-				throw("ERROR: ran out of items while populating rooms -- increase MAX_ITEMS");
+				throw(1);
 			}
 		}
 
@@ -189,7 +159,7 @@ void Map::populateRooms()
 			++criterator;
 			if (criterator == crend)
 			{
-				throw("ERROR: ran out of critters while populating rooms -- increase MAX_CRITTERS");
+				throw(2);
 			}
 		}
 
