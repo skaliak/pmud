@@ -105,7 +105,7 @@ void GameController::showGreeting()
 	std::cout << banner << "\n\n\n";
 }
 
-void timedEvent(int i)
+void GameController::timedEvent(int i)
 {
 	int n = 10;
 	if (i % n == 0)

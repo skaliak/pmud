@@ -57,9 +57,17 @@ int main()
 	srand(time(NULL));
 
 	//pmudTests::RunAllTests();
+	try
+	{
+		GameController gc;
+		gc.Play();
+	}
+	catch (string e)
+	{
+		std::cout << e << "\n\n";
+	}
 
-	GameController gc;
-	gc.Play();
+	
 
 	return 0;
 }

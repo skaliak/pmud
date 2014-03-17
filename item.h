@@ -21,14 +21,16 @@ public:
 	bool isHeldByPlayer() { return heldByPlayer; }
 
 	//setters
-	void setLocation(Room *r) { if (location == NULL) location = r; }
+	void setLocation(Entity *r) { if (location == NULL) location = r; }
 	void setAttribs(string name, bool i = false, int w = 1, Room *loc = NULL);
 
 	//need a method to "take" or "pick up" the item?
-	virtual void addEffects(Player *p){}   //base version does nothing?
+	//virtual void addEffects(Player *p){}   //base version does nothing?
 
 protected:
-	Entity *location;  //is this necessary?  Only if we want to know where all items are, I guess
+	//is this necessary?  Only if we want to know where all items are, I guess
+	//it would be nice if this could be an Entity instead of a room
+	Entity *location;  
 	int weight;
 	bool immobile;
 	bool heldByPlayer;

@@ -137,11 +137,6 @@ void Map::generateRooms()
 	string msg = "\ngenerating rooms ";
 	cout << BLUE(msg);
 
-	//these lines are probably ok to delete
-	//int aSize = (size * size) + 1;
-	//rooms = new Room[aSize];
-	//int rcount = 0;
-
 	//generate all the rooms
 	for (int y = 0; y < size; ++y)
 	{
@@ -162,11 +157,6 @@ void Map::populateRooms()
 	string msg = "\npopulating rooms ";
 	cout << BLUE(msg);
 
-	//obsolete?
-	//int aSize = (size * size) + 1;
-	//int windex = 0;
-	//int cindex = 0;
-
 	Factory factory;
 	auto rbeg = vrooms.begin();
 	auto rend = vrooms.end();
@@ -182,7 +172,7 @@ void Map::populateRooms()
 		{
 			string name = factory.generateWeaponName();
 			(*witerator)->setAttribs(name);
-			(*currentRoom)->putItem(*witerator);
+			(*currentRoom)->putItem(*witerator);  //changed the pointer type of the parameter to Entity, so this could blow up..?
 			++witerator;
 			if (witerator == wend)
 			{
