@@ -1,4 +1,4 @@
-pmud
+pmud AKA "Programmer's Quest"
 ====
 
 single player "mud" with procedural generation
