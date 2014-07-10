@@ -21,3 +21,5 @@ A few things on the TODO list:
 - signposts (e.g. "<region> 10 east")
 - other item types with other effects
 - multiplayer???
+
+![screenshot](/screenshot.PNG?raw=true)
