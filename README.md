@@ -22,4 +22,4 @@ A few things on the TODO list:
 - other item types with other effects
 - multiplayer???
 
-![screenshot](/screenshot.PNG?raw=true)
+![screenshot](https://github.com/skaliak/pmud/blob/master/screenshot.PNG?raw=true)
