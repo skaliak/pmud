@@ -1,4 +1,4 @@
-pmud AKA "Programmer's Quest"
+[pmud AKA "Programmer's Quest"](https://github.com/skaliak/pmud)
 ====
 
 single player "mud" with procedural generation
